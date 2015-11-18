@@ -1,0 +1,78 @@
+﻿<!--<link href="css/viewsStyles/createMap.css" rel="stylesheet">-->
+<div data-tap-disabled="true" id="createMap" class="mapContainer-create" ng-style="getStyle(showGalleryVar)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+<div class="slickContainer showGallery">
+    <div class="row">
+        <div class="col-50 mapPhotoCol" ng-click="takePhoto()">
+            <div class="mapPhotoIcon takePhotoIcon"></div>
+            <div class="mapPhotoText">TakePhoto</div>
+        </div>
+        <div class="col-50" style="text-align:center;" ng-click="choosePhoto()">
+            <div class="mapPhotoIcon choosePhotoIcon" style="width: 58px;"></div>
+            <div class="mapPhotoText">Choose from existing</div>
+        </div>
+    </div>
+</div>
+
+
+<!--<ion-header-bar align-title="center" class="transparentBar createMapHeader">
+    <button class="button button-icon button-clear ion-chevron-left mapHeaderButton" ng-click="backButton()" ng-bind='"back" | translate'></button>
+</ion-header-bar>-->
+
+<div class="topButtons-createMap">
+    <form name="nameFormCreateMap" class="fields-map card">
+        <input name="fieldNameCreateMap" class="fieldName" type="text" ng-maxlength="10" ng-placeholder='"name" | translate' ng-model="field.name" />
+    </form>
+    <span ng-show="nameFormCreateMap.fieldNameCreateMap.$error.maxlength" class="nameLengthError" ng-bind='"field_name_length_error" | translate'></span>
+</div>
+<div class="bottomAdvice-map" ng-if="isPolygonButtonClicked && !isPolygonCreated">
+    Tap on map to place node or tap on first node to close boundary
+</div>
+
+
+<div class="leftSideBox">
+    <div class="topBox">
+        <img src="images/field/ico_green_checkmark@2x.png" ng-class="{'saveBtn': allStepsFinished(), 'saveBtn-transparent': !allStepsFinished()}" ng-click="saveNewField()" /><!--addImage()-->
+        <img src="images/field/ico_red_cross@2x.png" ng-click="backButton()" />
+    </div>
+    <div class="bottomBox" ng-class="{'active':showGalleryVar}">
+        <img src="images/field/ico_add_photo@2x.png" ng-click="toggleGallery()" /><!--addImage()-->
+        <img src="images/field/ico_add_info@2x.png" ng-click="addNote()" />
+        <img src="images/field/ico_boundaries@2x.png" ng-click="createPolygon()" />
+    </div>
+</div>
+
+
+
+<div ng-if="isPolygonButtonClicked && !isPolygonCreated" class="polygonButtons" ng-class="{'active':showGalleryVar}">
+    <img src="images/field/polygon/ico_finish@2x.png" ng-click="finishPolygonDrawing()" />
+    <img src="images/field/polygon/ico_delete_last_point@2x.png" ng-click="deleteLastPoint()" />
+    <img src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelPolygonDrawing()" />
+</div>
+
+
+<div class="fields-map">
+    <!--<input type="text" ng-placeholder='"name" | translate' ng-model="field.name">-->
+    <div class="note-createMap" ng-if="isAddNoteButtonClicked">
+        <textarea style="height: 20px" elastic ng-placeholder='"notes" | translate' ng-model="field.note"></textarea>
+        <div class="triangle-arrow-right-createMap"></div>
+    </div>
+</div>
+
+<!--<img src="images/field/ico_save@2x.png" ng-if="allStepsFinished()" ng-click="saveNewField()" class="saveField-map " ng-bind='"save" | translate' />-->
+
+<div ng-show="showEditRemoveButtons && isPolygonCreated" class="polygonEditing-map">
+    <img src="images/field/polygon/ico_boundarie_edit@2x.png" ng-click="editPolygon()" />
+    <img src="images/field/polygon/ico_boundarie_delete@2x.png" ng-click="deletePolygon()" />
+
+    <div class="polygonEditConfirmationButtons">
+        <img ng-show="isEditPolygonClicked" src="images/field/polygon/ico_finish@2x.png" ng-click="saveEditedPolygon()" />
+        <img ng-show="isEditPolygonClicked" src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelEditingPolygon()" />
+    </div>
+
+    <div class="polygonRemoveConfirmationButtons">
+        <img ng-show="isDeletePolygonClicked" src="images/field/polygon/ico_finish@2x.png" ng-click="savePolygonDeletion()" />
+        <img ng-show="isDeletePolygonClicked" src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelPolygonDeletion()" />
+    </div>
+</div>
+
+

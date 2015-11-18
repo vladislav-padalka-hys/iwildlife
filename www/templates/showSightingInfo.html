@@ -1,0 +1,61 @@
+﻿<link href="css/viewsStyles/showSightingInfo.css" rel="stylesheet">
+
+
+<div ng-controller="showSightingInfoCtrl" class="sightingInfo-modal padding">
+    <div class="animate-show">
+        <img class="editButton-sighting" src="images/field/ico_edit_field_white@2x.png" ng-click="editSighting()" ng-if="isAdmin(currUser, selectedField)" />
+        
+        <ion-scroll direction="y" class="scrollVertical-showSight animalDetailsContainer-showSight">
+            <div class="1animalHeader">
+                <span ng-bind="currentSighting.Animal"></span>
+                <!--<i class="icon closeIcon ion-close" ng-click="closeModal()"></i>
+                <i class="icon trashIcon ion-trash-b" ng-click="editSighting()"></i>-->
+            </div>
+            <div class="1animalWhen">
+                <span ng-bind="date(currentSighting.Date)"></span>
+                <span>&nbsp;</span>
+                <span ng-bind="getTime(time(currentSighting.Date))"></span>
+                <span>&nbsp;</span>
+                <span ng-bind='"by" | translate'></span>
+                <span>&nbsp;</span>
+                <span ng-bind="currentSighting.Hunter.UserName"></span>
+            </div>
+            <div class="row animalDetails">
+                <div class="col col-33 col-center colBold">
+                    <div ng-bind="currentSighting.Type"></div>
+                    <div ng-bind="currentSighting.Age"></div>
+                    <div ng-bind="currentSighting.State"></div>
+                </div>
+                <div class="col col-center">
+                    <div ng-if="currentSighting">
+                        <i ng-if="isSunTimeSight(currentSighting)" class="icon weatherIcon wi" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].DayIcon"></i>
+                        <i ng-if="!isSunTimeSight(currentSighting)" class="icon weatherIcon wi" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].NightIcon"></i>
+                        <span ng-bind="getTemperature(currentSighting.Weather.hourly[getHourly(currentSighting.Date)].tempC)"></span>
+                    </div>
+                    <div>
+                        <i class="icon weatherIcon wi wi-wind" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].WindIcon"></i>
+                        <span ng-bind="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].winddir16Point"></span>
+                        <span ng-bind="getDistance(currentSighting.Weather.hourly[getHourly(currentSighting.Date)].windspeedKmph)"></span>
+                        <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                        <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                    </div>
+                    <div>
+                        <i class="icon weatherIcon wi" ng-class="currentSighting.Weather.MoonIcon"></i>
+                        <!--<span ng-bind="currentSighting.Weather.AstronomyObject.Moon.moonphase"></span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="1animalNote">
+                <span ng-bind="currentSighting.Note"></span>
+            </div>
+            <div class="1animalPhotos">
+                <div ng-repeat="image in currentSighting.Images">
+                    <img class="sightInfoImage" ng-if="isLocaL(image.SRC)" ng-src="{{urlForImage(image.SRC)}}">
+                </div>
+            </div>
+        </ion-scroll>
+    </div>
+
+    <div class="triangle-arrow-left"></div>
+
+</div>

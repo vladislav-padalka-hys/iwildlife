@@ -1,0 +1,749 @@
+﻿.index {
+    z-index: 20;
+}
+
+svg {
+    font: 10px sans-serif;
+    shape-rendering: crispEdges;
+    color: white;
+}
+
+.rectWhite {
+    fill: transparent;
+    /*fill-opacity:0.7;*/
+}
+
+.rectBlack {
+    fill-opacity: 0.7;
+    fill: rgb(0,0,0);
+}
+
+.rectFilter {
+    fill-opacity: 0.9;
+    fill: #666;
+}
+
+
+.xaxis path,
+.xaxis line {
+    fill: white;
+    stroke: #fff;
+    stroke-opacity: 0.7;
+}
+
+.xaxis .minor {
+    stroke-width: 0.4px;
+}
+
+.xaxis {
+    stroke: #fff;
+}
+
+.fieldScroll {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    z-index: 20;
+}
+
+.today {
+    font-size: 14px !important;
+}
+
+.weekend {
+    fill: #EBA91C;
+    stroke: #EBA91C;
+}
+
+.selected-sighting-div {
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img-col {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    height: 100%;
+    width: 34%;
+    position: absolute;
+}
+
+.sighting-image {
+    width: 75%;
+    height: 75%;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 10%;
+    box-shadow: 1px 5px 8px 1px rgba(0,0,0,0.75);
+}
+
+.dark-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.item {
+    z-index: auto;
+    padding: 5px 10px;
+}
+
+.weat {
+    font-family: weathericons !important;
+    fill: white;
+    font-size: 20px;
+}
+
+.item input {
+    padding-left: 0;
+}
+
+.weather-hor {
+    display: inline;
+    font-size: 14px;
+}
+
+    .weather-hor span {
+        margin: 0 0 0 5px;
+    }
+
+        .weather-hor span:first-child {
+            margin-left: 0;
+        }
+
+.fieldDetailsPane {
+    /*background-image: url(../../images/addField.jpg); /*background: url(../images/dashboard.png) no-repeat center center fixed;*/
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+}
+
+.addImage {
+    text-align: center;
+    padding: 5px;
+    height: 70px;
+}
+
+    .addImage i {
+        font-size: 40px;
+    }
+
+.preview-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+    .preview-image div {
+        margin: auto;
+        height: 100%;
+        display: block;
+        font-size: 20px;
+        line-height: 70px;
+    }
+
+.thumbnails-container {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+}
+
+    .thumbnails-container > div {
+        max-width: 300px;
+        margin: auto;
+    }
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0.8;
+    font-size: 25px !important;
+}
+
+.fdHeader {
+    position:relative;
+    height: 70px;
+    vertical-align:baseline;  
+    background:rgba(0,0,0,0.7);
+    color: white !important;
+}
+
+    .fdHeader img {
+        position: relative;
+        z-index: 2;
+        width: 25px;
+        height: 25px;
+        margin-right: 25px;
+        color: white !important;
+    }
+
+.fdHeaderButton {
+    max-height: 100% !important;
+    color:white !important;
+}
+
+.fdHeaderTitle {
+    position:relative !important;
+    text-align:center; 
+    /*max-height: 100% !important;*/
+    margin-top: 20px;
+    font-size: 20px !important;
+    font-weight: 100 !important;
+    font-family: FuturaStd-Medium !important;
+}
+
+
+.fdHeaderButtonsContainer{
+    position:relative;
+    min-width:220px;
+    max-width:220px;
+}
+    .fdHeaderButtonsContainer img{
+        float:right;
+    }
+    .fdHeaderButtonsContainer button{
+        float:right;
+    }
+
+.backButtonContainer {
+    position: relative;
+    min-width: 220px;
+    max-width: 220px;
+}
+
+.trashB {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 180px;
+}
+
+.arrowB {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 50px;
+}
+
+.editB {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 80px;
+}
+
+/*.fdHeaderTitle {
+    line-height: 75px !important;
+    max-height: 100% !important;
+    height: 75px !important;
+    font-size: 40px !important;
+    font-weight: 100 !important;
+    font-family: FuturaStd-Medium !important;
+}*/
+
+
+.fieldBGImage {
+    /*background: no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.fieldRow {
+    position: absolute;
+    top: 75px;
+}
+
+.rounded {
+    border-radius: 7px !important;
+}
+
+.form-rounded {
+    border-radius: 7px;
+}
+
+.longText {
+    min-height: 70px;
+    background-color: transparent;
+    background: none;
+}
+
+.colWeather > div {
+    min-width: 60px;
+    float: right;
+}
+
+
+.buttonWhite {
+    background-color: white;
+    opacity: 0.4;
+    color: black;
+    text-align: center !important;
+}
+
+.border-opacity-field {
+    border-bottom: none;
+    border-color: rgba(221,221,221,0.3);
+    border-width: 1px;
+}
+
+.fieldImage {
+    height: 200px;
+    width: 100%;
+    position: relative;
+}
+
+.sightInfoImage {
+    width: 100%;
+    height: auto;
+}
+
+.closeIcon {
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.trashIcon {
+    height: inherit !important;
+    float: right;
+    padding-right: 20px;
+}
+
+.container90 {
+    width: 90px;
+    height: 90px;
+}
+
+.border-gray {
+    border: 1px solid red;
+    border-color: rgba(221,221,221,0.5);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.accordeonHeader {
+    font-size: 20px;
+    color: white;
+    padding-right: 100px;
+}
+
+.fieldNote {
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.scrollVertical {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+}
+
+.thirdColumn {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+}
+
+.byHunter {
+    padding-left: 11px;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+}
+
+.sightingBrightFilter {
+    background-color: black;
+    display: inline-block;
+    position: relative;
+    opacity: 0.4;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.weatherListFD {
+    width: 80%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: black;
+    opacity: 0.7;
+    color: white;
+    border: none;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    z-index: 100;
+}
+
+.weatherItem {
+    background-color: transparent;
+    border: none;
+    padding: 5px 0 5px 54px;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    font-size: 16px;
+}
+
+.sightingList {
+    margin: 5px 0;
+    background-color: transparent;
+    color: white;
+    border: none;
+    position: relative;
+}
+
+.sightingItem {
+    position: relative;
+    padding: 0px;
+    background-color: transparent;
+    /*border: 1px solid rgba(221,221,221,0.5);*/
+    border-bottom: 1px solid rgba(221,221,221,0.5);
+    border-right: 1px solid rgba(221,221,221,0.5);
+    margin: -1px;
+    font-size: 16px;
+}
+
+.sightingItem-firstChild {
+    border-top: 1px solid rgba(221,221,221,0.5);
+}
+
+
+.sightingsInfo {
+}
+
+.sightingsCount {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sightingsDates {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.animalDetailsContainer {
+    padding: 10px;
+}
+
+    .animalDetailsContainer div {
+        color: white;
+    }
+
+.animalHeader {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.animalWhen {
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.animalDetails .colBold {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.animalDetails {
+    padding: 0;
+}
+
+    .animalDetails .col {
+        padding: 0;
+    }
+
+        .animalDetails .col div {
+            padding: 5px 0;
+        }
+
+            .animalDetails .col div i {
+                padding: 5px;
+            }
+
+.animalNote {
+    font-size: 20px;
+}
+
+.animate-show .item:first-child {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.animate-show .item:last-child {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.dropdownTransparent {
+    background-color: transparent;
+    overflow: visible;
+}
+
+    .dropdownTransparent > input {
+        background-color: transparent;
+        color: white !important;
+    }
+
+    .dropdownTransparent > div {
+        float: right;
+        color: white;
+        padding: 0 5px;
+    }
+/*//////////////////////////////////////////////*/
+
+
+.dropDownLight {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .dropDownLight a {
+        /*margin-left:-150px;*/
+        display: block;
+        background: white;
+        width: 195px;
+        height: 40px;
+        padding: 0 0 0 10px;
+        font: bold 13px Helvetica, sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.4);
+        line-height: 40px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+        .dropDownLight a:nth-child(2) {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .dropDownLight a:last-child {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .dropDownLight a:hover {
+            color: #555;
+        }
+
+            .dropDownLight a:hover > .fa {
+                color: #555;
+            }
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid white;
+    margin-left: 140px;
+}
+
+.iconTop {
+    z-index: 10;
+}
+/*/////////////////////////////////////////////////////////////////////*/
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+    .dropdown-menu.pull-right {
+        right: 0;
+        left: auto;
+    }
+
+    .dropdown-menu .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
+    }
+
+    .dropdown-menu > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+    }
+
+
+.arrowDownIcon {
+    height: 100% !important;
+    font-size: 32px !important;
+}
+
+.sightImg {
+}
+
+.dropdownTransparent.item.activated {
+    background-color: transparent !important;
+}
+
+.sightingFilterGradient {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%);
+    z-index: 1;
+    width: 100%;
+    height: 200px;
+}
+
+.selectedSightingBackground {
+    background: url('../../images/sighting-bg.png') no-repeat center center;
+    background-size: 100% 100%;
+    padding: 10px;
+    height: 100%;
+}
+
+    .selectedSightingBackground.disabled {
+        background: none;
+    }
+/*.backgroundSize{
+    background-repeat:initial !important;
+}*/
+
+/*.col.col-center.animate-show.img-col::before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12.5px 0 12.5px 25px;
+    border-color: transparent transparent transparent #007bff;
+    content: '';
+}*/
+.editButton-fieldDetails {
+    margin-right: 10px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    z-index: 200;
+}
+
+.sightingEditDelete {
+    min-width: 50px;
+    display: inline-block;
+    margin-top: -10px;
+    vertical-align: top;
+    float: right;
+}
+
+.sightingName {
+    max-width: 70%;
+    display: inline-block;
+    line-height:35px !important;
+}
+
+.deleteSighting {
+    /*position: absolute;
+    right: 10px;
+    top: -10px;*/
+    float:right;
+    width: 20px;
+    height: 27px;
+}
+
+.sightDate span {
+    color: white;
+}
+
+.scroll-content {
+    overflow: visible;
+}
+
+.filterBtn {
+    position: relative !important;
+    min-width:110px;
+    /*max-width:110px;
+    height:65px;
+    line-height:65px;*/
+    float:right;
+    font-size:18px;
+    text-overflow: clip;
+    text-overflow: ellipsis;
+   
+}
+
+    .filterBtn .filterBtnText {
+        overflow:hidden; 
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+        display:inline-block; 
+        max-width:80%;
+        font-size: 15px;
+    }
+    .filterBtn .filterBtnImg {
+        display:inline-block; 
+        height:20px;
+    }
+
+    .filterBtn img {
+        height: 11px;
+        width: 17px;
+        margin-right:5px !important;
+        color:white;
+        float:left;
+    }
+
+
+.popup-container .transp {
+    width: auto !important;
+    background-color: transparent !important;
+}
+
+#usersManagement {
+    position: fixed !important;
+    top: 100px !important;
+    height: 110px !important;
+    width: 240px !important;
+    margin-left: -20px !important;
+}

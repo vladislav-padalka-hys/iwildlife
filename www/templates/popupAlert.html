@@ -1,0 +1,12 @@
+﻿<div ng-controller="PopupAlertCtrl">
+    <div class="popupPush">
+        <div class="pushTitle">{{popupAlertMessage}}</div>
+        <div ng-if="isTwoButtons == true">
+            <div class="button button-block button-positive" ng-click="buttonFunction()">Ok</div>
+            <div id="popupCancel" class="button button-block button-stable" ng-click="closePopup()">Cancel</div>
+        </div>
+        <div ng-if="isTwoButtons == false">
+            <div class="testBtn button button-block button-stable" ng-click="closePopup()">Ok</div>
+        </div>
+    </div>
+</div>

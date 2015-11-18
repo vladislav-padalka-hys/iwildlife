@@ -1,0 +1,50 @@
+﻿<link href="css/viewsStyles/pin.css" rel="stylesheet">
+<link href="css/viewsStyles/login.css" rel="stylesheet">
+<ion-view id="pin-view" class="login text-center">
+    <ion-content class="login-content content-top" id="pin-cntnt" scroll="false" ng-click="focusInput()">
+        <h2 id="hdr" class="login-title login-text">iWildLife</h2>
+        <!--<div class="bottom-margin"></div>-->
+        <div ng-if="!userLogged" class="createPinText">
+            <!--<div class="textSmall" ng-show="!confirmPin">Enter Pin</div>
+            <div class="textSmall" ng-show="confirmPin">Enter confirmPin</div>-->
+            <!--<div class="text-semioptic" style="margin:auto;margin-top:15px;margin-bottom:20px;max-width:180px;">Enter Pin which u want to use</div>-->
+        </div>
+        <div class="list list-inset no-margin confirmation" style="background-color: transparent" ng-if="confirmPin">
+            <div class="pinContainer">
+                <div class="pinElement">
+                    <div class="circle"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <div class="list list-inset no-margin" style="background-color: transparent">
+            <div class="pinContainer">
+                <div class="pinElement">
+                    <div class="circle" ng-show="pinShow(0,pin)"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle" ng-show="pinShow(1,pin)"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle" ng-show="pinShow(2,pin)"></div>
+                </div>
+                <div class="pinElement">
+                    <div class="circle" ng-show="pinShow(3,pin)"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-margin-button"></div>
+        <div class="button-sign-in button button-block button-rounded" ng-click="signOff(); $event.stopPropagation();">Sign off</div>
+        <input id="pin" type="number" maxlength="4" ng-model="pin" tabindex="1" ng-change="checkPin(pin)" style="opacity:0;position:absolute;left:-200%;top:20%;" />
+    </ion-content>
+
+</ion-view>

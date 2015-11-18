@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!--<meta http-equiv="Content-Security-Policy" content="script-src 'self' chrome-devtools://devtools; object-src 'self' chrome-devtools://devtools" />-->
+    <title></title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/viewsStyles/ngShowHideAnimation.css" rel="stylesheet">
+    <link href="fonts/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+    <link href="fonts/weather-icons/css/weather-icons-wind.min.css" rel="stylesheet">
+    <link href="fonts/futura/css/futura.css" rel="stylesheet" />
+
+
+    <!-- templates style sheets -->
+    <link href="css/viewsStyles/createMap.css" rel="stylesheet">
+    <link href="css/viewsStyles/map.css" rel="stylesheet">
+    <link href="css/viewsStyles/fieldDetails.css" rel="stylesheet">
+
+
+    <!--<link href="css/slick.css" rel="stylesheet">-->
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ionic-service-core/ionic-core.js"></script>
+    <script src="lib/ionic-service-push/ionic-push.js"></script>
+    <script src="lib/angular-translate.min.js"></script>
+    <script src="lib/angular-translate-loader-static-files.min.js"></script>
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <!--<script src="lib/slick.min.js"></script>
+    <script src="lib/angular-slick.js"></script>-->
+
+    <link href="css/autocomplete/jquery-ui.css" rel="stylesheet">
+    <script src="lib/autocomplete/jquery-ui.js"></script>
+    <script src="lib/d3.min.js"></script>
+
+    <!--<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
+
+
+    <!-- leaflet map -->
+    <link href="lib/leaflet/main/leaflet.css" rel="stylesheet"/>
+    <script src="lib/leaflet/main/leaflet-src.js"></script>
+    <script src="lib/leaflet/main/leaflet.js"></script>
+    <link href="lib/leaflet/plugins/draw/leaflet.draw.css" rel="stylesheet"/>
+    <script src="lib/leaflet/plugins/draw/leaflet.draw-src.js"></script>
+    <script src="lib/leaflet/plugins/draw/leaflet.draw.js"></script>
+
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet-src.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="lib/leaflet (map)/draw/leaflet.draw (touch support).js"></script>-->
+    <!-- pouchDB layer plugin -->
+    <script src="lib/leaflet/plugins/PouchDB/L.TileLayer.PouchDBCached.js"></script>
+    <script src="lib/leaflet/plugins/PouchDB/pouchdb.js"></script>
+    <!-- marker cluster -->
+    <link href="lib/leaflet/plugins/marker cluster/MarkerCluster.css" rel="stylesheet" />
+    <link href="lib/leaflet/plugins/marker cluster/MarkerCluster.Default.css" rel="stylesheet" />
+    <script src="lib/leaflet/plugins/marker cluster/leaflet.markercluster-src.js"></script>
+    <script src="lib/leaflet/plugins/marker cluster/leaflet.markercluster.js"></script>
+    <!--<script src="lib/leaflet/plugins/marker cluster/MarkerClusterGroup.js"></script>-->
+    <script src="lib/leaflet/plugins/marker cluster/MarkerClusterGroup.Refresh.js"></script>
+
+    <!--<script src="http://leaflet.github.io/Leaflet.markercluster/example/realworld.388.js"></script>-->
+
+
+
+
+    <!-- Direcеives -->
+    <script src="scripts/Directives/elastic.js"></script>
+    <!--Helpers-->
+    <script src="scripts/Helpers/localstorageHelper.js"></script>
+    <script src="scripts/Helpers/preferencesHelper.js"></script>
+    <script src="scripts/Helpers/apiConnection.js"></script>
+    <script src="scripts/Helpers/taskSevrice.js"></script>
+    <script src="scripts/Helpers/fileHelper.js"></script>
+    <script src="scripts/Helpers/AnimalsHelper.js"></script>
+    <!-- your app's js -->
+    <script src="scripts/js/app.js"></script>
+    <script src="scripts/js/controllers.js"></script>
+    <script src="scripts/Controllers/dashboard.js"></script>
+    <script src="scripts/Controllers/login.js"></script>
+    <script src="scripts/Controllers/register.js"></script>
+    <script src="scripts/Controllers/forgotPassword.js"></script>
+    <script src="scripts/Controllers/fieldDetails.js"></script>
+    <script src="scripts/Controllers/addField.js"></script>
+    <script src="scripts/Controllers/popupAlertCtrl.js"></script>
+    <script src="scripts/Controllers/personalInfo.js"></script>
+    <script src="scripts/Controllers/about.js"></script>
+    <script src="scripts/Controllers/MapCtrl.js"></script>
+    <script src="scripts/Controllers/createMap.js"></script>
+    <script src="scripts/Controllers/addSighting.js"></script>
+    <script src="scripts/Controllers/addPointOfInterest.js"></script>
+    <script src="scripts/Controllers/AddSightingOrPOI.js"></script>
+    <script src="scripts/Controllers/pinCtrl.js"></script>
+    <script src="scripts/Controllers/editField.js"></script>
+    <script src="scripts/Controllers/cleanMap.js"></script>
+    <script src="scripts/Controllers/showSightingInfo.js"></script>
+    <script src="scripts/Controllers/showPOIInfo.js"></script>
+    <script src="scripts/Controllers/editSighting.js"></script>
+    <script src="scripts/Controllers/editPOI.js"></script>
+    <script src="scripts/Controllers/markersFilter.js"></script>
+    <script src="scripts/Controllers/invitesCtrl.js"></script>
+    <script src="scripts/Controllers/managesCtrl.js"></script>
+    <script src="scripts/Controllers/popupPushCtrl.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--<link href="css/bootstrap/bootstrap.css" rel="stylesheet" />-->
+    <script src="cordova.js"></script>
+</head>
+<body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+</body>
+</html>

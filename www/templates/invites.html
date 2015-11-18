@@ -1,0 +1,26 @@
+﻿<link href="css/viewsStyles/invites.css" rel="stylesheet">
+<div ng-controller="InvitesCtrl">
+    <div class="invites">
+        <div class="invite-x" ng-click="invites.close()">
+            <img src="images/user_management/black_x@2x.png" class="black-x"/>
+        </div>
+        <input class="invite-email" type="email" ng-placeholder='"email" | translate' ng-model="invite.email" ng-pattern="emailRegex">
+
+        <div class="invite-dropdown" ng-click="toggleRoles()">
+            <input ng-model="invite.asRole" style="background-color: transparent;display:inline-block !important;width:80% !important;vertical-align:top !important;font-size:20px !important;height:28px !important;" type="text" id="roleInput" readonly>
+            <div style="height: 28px !important; padding: 5px;display:inline-block !important;width:15% !important;vertical-align:top !important;">
+                <i class="ion-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu-editInvite" id="roles">
+                <ul class="invite-roles">
+                    <li ng-click="selectRole('Guest','as guest');$event.stopPropagation();"><a>as guest</a></li>
+                    <li ng-click="selectRole('Manager','as manager');$event.stopPropagation();"><a>as manager</a></li>
+                    <li ng-click="selectRole('Administrator','as administrator');$event.stopPropagation();"><a>as administrator</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="invite-button" ng-click="inviteUser()">
+        <span class="invite-text" ng-bind='"invite_message" | translate'></span>
+    </div>
+</div>

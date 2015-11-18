@@ -1,0 +1,24 @@
+﻿<link href="css/viewsStyles/register.css" rel="stylesheet">
+<ion-view id="register-view" class="login text-center">
+    <ion-content class="login-content content-top" scroll="false">
+        <h2 class="login-title login-text">iWildLife</h2>
+        <div class="bottom-margin"></div>
+        <div class="list list-inset no-margin login-form" ng-class="{'shake':registerInvalid}" style="background-color:transparent" >
+            <label class="item item-input rounded-email border-opacity login-form-item-label" style="background-color:transparent;">
+                <input class="login-text" type="text" ng-placeholder='namePlaceholder' ng-model="newUser.name">
+            </label>
+            <label class="item item-input border-opacity" style="background-color:transparent;">
+                <input class="login-text" type="text" ng-placeholder='emailPlaceholder' ng-model="newUser.email">
+            </label>
+
+            <label class="item item-input rounded-password border-opacity" style="background-color:transparent">
+                <input class="login-text" type="{{showPassword?'text':'password'}}" ng-placeholder='passPlaceholder' ng-model="newUser.password">
+                <!--<input class="login-text" type="text" placeholder="Password" ng-model="newUser.password" ng-show="showPassword">-->
+                <i class="icon ion-eye" style="font-size: 30px;padding-right:10px;color:rgba(255,255,255,0.5);" on-touch="showPassword = !showPassword"></i>
+            </label>
+        </div>
+        <div class="button-register button button-block button-rounded" ng-click="register()" ng-bind='"register_message" | translate'></div>
+        <div class="button-sign-in button button-block button-rounded" ng-click="signIn()" ng-bind='"sign_in_message" | translate'></div>
+    </ion-content>
+    
+</ion-view>

@@ -1,0 +1,89 @@
+﻿.invites{
+    display:inline-block !important;
+}
+
+.invite-email{
+    width:200px !important;
+    display:inline-block !important;
+    margin:5px 0px !important;
+    padding:4px !important;
+    font-size:20px !important;
+    line-height:34px !important;
+    border-radius:7px 0 0 7px !important;
+}
+
+.invite-x {
+    vertical-align: middle !important;
+    display: inline-block !important;
+    border-radius: 30px !important;
+    padding: 9px !important;
+    margin-right: 20px !important;
+    background-color: white !important;
+}
+
+.invite-dropdown{
+    overflow: visible;
+    display:inline-block !important;
+    margin-left:-3px !important;
+    padding:3px !important;
+    vertical-align:middle !important;
+    height:34px;
+    font-size:20px !important;
+    line-height:30px !important;
+    background-color:white;
+    width:190px !important;
+}
+
+.invite-button {
+    display: inline-block !important;
+    background-color: black !important;
+    color: white !important;
+    line-height: 34px;
+    padding: 0 15px !important;
+    margin-left: -3px !important;
+        border-radius:0 7px 7px 0 !important;
+}
+
+.invite-text {
+    font-size: 16px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 35px !important;
+}
+
+.black-x {
+    vertical-align: middle;
+    width: 20px;
+}
+
+.dropdown-menu-editInvite {
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    display: none;
+    width: 190px;
+    padding: 3px 3px;
+    font-size: 20px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+    .dropdown-menu-editInvite > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+    }
+

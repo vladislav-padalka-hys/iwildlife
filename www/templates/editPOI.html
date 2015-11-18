@@ -1,0 +1,49 @@
+﻿<!--<link href="css/viewsStyles/sighting.css" rel="stylesheet">
+<link href="css/viewsStyles/fieldDetails.css" rel="stylesheet">-->
+<link href="css/viewsStyles/editPOI.css" rel="stylesheet">
+
+
+
+<div ng-controller="editPOICtrl" class="editPoi-modal padding">
+    <div ng-show="!rightCol(3)" class="animate-show">
+        <div class="accordeonHeaderModal">
+            <span ng-bind='"edit_poi" | translate'></span>
+        </div>
+
+        <img class="deletePOI" src="images/field/ico_del_field@2x.png" ng-click="deletePOI()" />
+
+        <div class="list list-inset no-margin form-rounded " ng-class="{'shake':poiInvalid}">
+            <div class="item item-input border-opacity dropdownTransparent-editPOI">
+                <input class="login-text" type="text" ng-placeholder='"name" | translate' id="input1" ng-model="currentPOI.Name"><!--disabled-->
+
+            </div>
+
+
+            <div class="item item-input border-opacity-field-editPOI  thumbnails-container-editPOI">
+                <!--<div ng-repeat="image in currentPOI.Images">
+                    <img class="sightInfoImage" ng-if="isLocaL(image.SRC)" ng-src="{{urlForImage(image.SRC)}}">
+                </div>-->
+                <div>
+                    <div style="float: left; min-width: 100px;  color: grey">
+                        <div class="border-gray addImage" ng-click="addImage()">
+                            <i class="ion-image"></i>
+                            <div><span ng-bind='"add_image" | translate'></span></div>
+                        </div>
+                    </div>
+                    <div ng-repeat="image in currentPOI.Images track by $index" style="float: left; min-width: 100px;">
+                        <div class="preview-image" ng-style={'background-image':'url({{urlForImage(image.SRC)}})'}>
+                            <div class="button button-icon ion-close-circled" ng-click="deleteImage($index)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-editPOI " style="background-color: transparent; color: black;">
+                <textarea class="login-text longText" type="text" ng-placeholder='"notes" | translate' ng-model="currentPOI.Note" style="color: black !important;"></textarea>
+            </div>
+            <div class="button border-opacity buttonWhite" style="margin: 0; padding: 5px 0; font-size: 20px; font-weight: bold; width: 100%; background-color: black; color: white; z-index: 9999;" ng-click="savePOI()" ng-bind='"save" | translate'></div>
+        </div>
+    </div>
+
+    <div class="triangle-arrow-left"></div>
+
+</div>

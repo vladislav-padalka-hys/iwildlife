@@ -1,0 +1,41 @@
+﻿<div style="background-color: lightgray; height: 100%;" ng-controller="PersonalInfoCtrl">
+    <div class="padding-20">
+        <div class="custom-list list" ng-class="{'shake':personalInfoInvalid}">
+            <label class="item item-input custom-field" style="border: none;">
+                <span class="input-label" ng-bind='"username" | translate'></span>
+                <input type="text" class="personal-input-field" ng-placeholder='"enter_name" | translate' ng-model="user.newUsername">
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input custom-field" style="border: none;">
+                <span class="input-label" ng-bind='"email" | translate'></span>
+                <input type="text" class="personal-input-field" ng-placeholder='"enter_email" | translate' ng-model="user.newEmail">
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input custom-field" style="border: none;">
+                <span class="input-label" ng-bind='"password" | translate'></span>
+                <input type="password" class="personal-input-field" ng-placeholder='"enter_old_pass" | translate' ng-model="user.password.oldPassword" ng-click="clearOldPasswordField()" ><!--ng-blur="rewriteOldPassword()">-->
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input custom-field" style="border: none;">
+                <span class="input-label" ng-bind='"new_password" | translate'></span>
+                <input type="password" class="personal-input-field" ng-placeholder='"enter_new_pass" | translate' ng-model="user.password.newPassword" ng-click="clearNewPasswordField()">
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input custom-field" style="border: none;">
+                <span class="input-label" ng-bind='"conf_password" | translate'></span>
+                <input type="password" class="personal-input-field" ng-placeholder='"enter_conf_pass" | translate' ng-model="user.password.confirmPassword" ng-click="clearConfirmPasswordField()">
+            </label>
+            <!--<hr class="custom-fields" />
+        <label class="item item-input image-input" style="border: none;">
+            <span class="input-label image-text" ng-bind='"add_image" | translate'></span>
+            <div align="right" class="image-button" ng-click="addImage()">
+                <div>
+                    <a class="button button-icon ion-image" style="color: lightgray; font-size: 25px;"></a><br />
+                    <span ng-bind='"add_image" | translate'></span>
+                </div>
+            </div>
+        </label>-->
+        </div>
+        <button class="button-changeuser" ng-click="changeUserData()" ng-class="{'shake':personalInfoInvalid}"> Save Changes</button>
+    </div>
+</div>

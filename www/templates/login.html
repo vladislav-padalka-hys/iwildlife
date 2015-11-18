@@ -1,0 +1,24 @@
+﻿<link href="css/viewsStyles/login.css" rel="stylesheet">
+<ion-view id="login-view" class="login text-center">
+    <ion-content class="login-content content-top" scroll="false">
+        <h2 class="login-title login-text">iWildLife</h2>
+        <div class="bottom-margin"></div>
+        <div class="list list-inset no-margin login-form" ng-class="{'shake':loginInvalid}" style="background-color: transparent">
+            <label class="item item-input rounded-email border-opacity login-form-item-label" style="background-color: transparent;">
+                <input class="login-text" type="text" ng-placeholder='"email" | translate' ng-model="user.email">
+            </label>
+            <label class="item item-input rounded-password border-opacity login-form-item-label" style="background-color: transparent">
+                <input class="login-text" type="password" ng-placeholder='"password" | translate' ng-model="user.password">
+            </label>
+        </div>
+        <h4 ng-href="#/forgotPassword" class="login-text login-forgot-password" style="text-align: left; padding: 0 10px;" ng-bind='"forgot_password_message" | translate' ng-click="forgotPassword()"></h4>
+
+
+
+
+
+        <div class="button-sign-in button button-block button-rounded" ng-bind='"sign_in_message" | translate' ng-click="signIn()"></div>
+        <div class="button-register button button-block button-rounded" ng-bind='"register_message" | translate' ng-click="register()"></div>
+    </ion-content>
+   
+</ion-view>

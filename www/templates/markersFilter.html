@@ -1,0 +1,73 @@
+﻿<link href="css/viewsStyles/markersFilter.css" rel="stylesheet">
+<!--<link href="css/viewsStyles/fieldDetails.css" rel="stylesheet">-->
+
+
+
+<div ng-controller="markersFilterCtrl" ng-class="{'markersFilter-modal': checkState(), 'markersFilter-modal-dark': !checkState()}">
+    <div class="animate-show">
+        <div class="triangle-arrow-up"></div>
+        <div class="list list-inset no-margin form-rounded ">
+            <div class="item item-input border-opacity-field"
+                 ng-class="{'dropdownTransparent-markFilter': checkstate(), 'dropdownTransparent-markFilter-dark': !checkstate()}"
+                 ng-click="toggleSightDetails(1)">
+                <input ng-model="filterSighting.Animal" class="login-text" type="text" ng-placeholder='"select_animal" | translate' id="input1" readonly><!--disabled-->
+                <div class="dropdown" ng-show="currFieldAnimals.length>0">
+                    <!--show if there are animals on current field-->
+                    <div ng-click="toggleSightDetails(1);$event.stopPropagation();" style="width: 30px; height: 30px; padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu pull-right" id="filterMenu1">
+                        <li ng-repeat="animal in currFieldAnimals"><a href="#" ng-click="selectAnimal(animal.name);$event.stopPropagation();" ng-bind="animal.name" style="text-decoration: none;"></a></li>
+                        <li><a ng-click="showAll(1);$event.stopPropagation();" ng-bind='"show_all" | translate'></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field dropdownTransparent-markFilter" ng-click="toggleSightDetails(2)">
+                <input ng-model="filterSighting.Type" class="login-text" type="text" ng-placeholder='"select_type" | translate' id="input2" readonly><!--disabled-->
+                <div class="dropdown" ng-show="currTypes.length>0">
+                    <div ng-click="toggleSightDetails(2);$event.stopPropagation();" style="width: 30px; height: 30px; padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu pull-right " id="filterMenu2">
+                        <li ng-repeat="type in currTypes"><a href="#" ng-click="selectType(type);$event.stopPropagation();" ng-bind="type" style="text-decoration: none;"></a></li>
+                        <li><a ng-click="showAll(2);$event.stopPropagation();" ng-bind='"show_all" | translate'></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field dropdownTransparent-markFilter" ng-click="toggleSightDetails(3)">
+                <input ng-model="filterSighting.User" class="login-text" type="text" ng-placeholder='"select_user" | translate' id="input3" readonly><!--disabled-->
+                <div class="dropdown" ng-show="currUsers.length>0">
+                    <div ng-click="toggleSightDetails(3);$event.stopPropagation();" style="width: 30px; height: 30px; padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu pull-right " id="filterMenu3">
+                        <li ng-repeat="user in currUsers"><a href="#" ng-click="selectUser(user);$event.stopPropagation();" ng-bind="user" style="text-decoration: none;"></a></li>
+                        <li><a ng-click="showAll(3);$event.stopPropagation();" ng-bind='"show_all" | translate'></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item item-input border-opacity-field dropdownTransparent-markFilter" ng-click="toggleSightDetails(4)">
+                <input ng-model="filterSighting.State" class="login-text" type="text" ng-placeholder='"select_state" | translate' id="input4" readonly>
+                <div class="dropdown">
+                    <div style="width: 30px; height: 30px; padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu pull-right" id="filterMenu4">
+                        <!--<li ng-repeat="state in currStates"><a href="#" ng-click="selectState(state);$event.stopPropagation();" ng-bind="state" style="text-decoration: none;"></a></li>-->
+                        <li><a ng-click="selectState('Single');$event.stopPropagation();">Single</a></li>
+                        <li><a ng-click="selectState('Group');$event.stopPropagation();">Group</a></li>
+                        <li><a ng-click="selectState('Tableau');$event.stopPropagation();">Tableau</a></li>
+                        <li><a ng-click="showAll(4);$event.stopPropagation();" ng-bind='"show_all" | translate'></a></li>
+
+                        <!--<li><a href="#" ng-click="selectState('Else')">Else</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field dropdownTransparent-markFilter" ng-click="showAll(5);$event.stopPropagation();">
+                <span><a ng-bind='"show_all" | translate'></a></span>
+            </div>
+        </div>
+    </div>  
+
+</div>

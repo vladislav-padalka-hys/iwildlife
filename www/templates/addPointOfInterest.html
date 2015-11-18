@@ -1,0 +1,43 @@
+﻿<!--<link href="css/viewsStyles/sighting.css" rel="stylesheet">
+<link href="css/viewsStyles/fieldDetails.css" rel="stylesheet">-->
+<link href="css/viewsStyles/addPointOfInterest.css" rel="stylesheet">
+
+
+
+<div ng-controller="addPointOfInterestCtrl" class="addPoi-modal padding">
+    <div ng-show="!rightCol(3)" class="animate-show">
+        <div class="accordeonHeaderModal">
+            <span ng-bind='"add_poi" | translate'></span>
+        </div>
+        <div class="list list-inset no-margin form-rounded " ng-class="{'shake':poiInvalid}">
+            <div class="item item-input border-opacity dropdownTransparent-addPoi">
+                <input class="login-text" type="text" ng-placeholder='"name" | translate' id="input1" ng-model="newPOI.name"><!--disabled-->
+               
+            </div>
+            
+
+            <div class="item item-input border-opacity-field-addPoi  thumbnails-container-addPoi">
+                <div>
+                    <div style="float: left; min-width: 100px;  color: grey">
+                        <div class="border-gray addImage" ng-click="addImage()">
+                            <i class="ion-image"></i>
+                            <div><span ng-bind='"add_image" | translate'></span></div>
+                        </div>
+                    </div>
+                    <div ng-repeat="image in newPOIImages track by $index" style="float: left; min-width: 100px;">
+                        <div class="preview-image" ng-style={'background-image':'url({{urlForImage(image)}})'}>
+                            <div class="button button-icon ion-close-circled" ng-click="deleteImage($index)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addPoi " style="background-color: transparent; color: black;">
+                <textarea class="login-text longText" type="text" ng-placeholder='"notes" | translate' ng-model="newPOI.note" style="color: black !important;"></textarea>
+            </div>
+            <div class="button border-opacity buttonWhite" style="margin: 0; padding: 5px 0; font-size: 20px; font-weight: bold; width: 100%; background-color: black; color: white; z-index: 9999;" ng-click="createPOI()" ng-bind='"save" | translate'></div>
+        </div>
+    </div>
+
+    <div class="triangle-arrow-right-poi"></div>
+
+</div>

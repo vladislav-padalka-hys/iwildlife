@@ -1,0 +1,23 @@
+﻿.about{
+    background-image: url(../../images/foraboutpage.jpg); 
+    -webkit-background-size: cover;
+        -moz-background-size: cover;   
+     background-size: 100% 100%;
+}
+
+.login-content{
+    min-width:300px;
+     width:30%; 
+     margin:auto;
+}
+
+.login-text{
+    font-weight:100;
+    color:white !important;
+}
+
+.button-sign-in{
+    background-color:rgba(221,221,221,0.5) !important;
+    border-color:rgba(0,0,0,0) !important;
+        color:black !important;
+}

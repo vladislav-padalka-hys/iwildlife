@@ -1,0 +1,99 @@
+﻿.manage-edit {
+    display:block;
+    background-color:white !important;
+    border-radius:10px;
+    line-height:35px !important;
+    padding: 0 !important;
+}
+
+.role {
+    display: none;
+    color:white;
+    background-color: rgb(211,211,211);
+    padding:0 10px;
+    margin-right:-8px;
+}
+
+.current-role {
+    display:inline-block;
+}
+
+.selected {
+    color: black;
+    background-color: rgb(105, 105, 105);
+}
+
+.close-change-role-icon {
+    vertical-align: middle !important;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.change-role-icon {
+    vertical-align: middle !important;
+    width: 15px;
+    height: 25px;
+    display: inline-block;
+}
+
+.close-change-role {
+    display: inline-block;
+    background-color: rgb(211,211,211);
+    margin-left: -5px;
+    margin-right: -10px;
+}
+
+.change-role {
+    display: inline-block;
+}
+
+.manage-roles {
+    float:right;
+}
+
+.manage-header {
+    font-size: 20px !important;
+    display: inline-block !important;
+    color:white;
+    margin-left:20px;
+    padding-bottom:5px;
+}
+
+.manage-x {
+    float: right;
+    display: inline-block !important;
+}
+
+.manage-x-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+}
+
+
+
+.manage-user {
+    font-size: 20px;
+    line-height: 50px;
+    padding-left: 15px;
+}
+
+.manage-role {
+    font-size: 20px;
+    line-height: 50px;
+    text-align: right;
+    padding:0 10px;
+}
+
+.manage-users {
+    height: 50px !important;
+    border-bottom: 1px solid;
+    width: 600px !important;
+    padding:0 !important;
+    margin-top:0 !important;
+}
+
+.manage-role img {
+    margin: 10px;
+}

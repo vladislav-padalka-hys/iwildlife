@@ -1,0 +1,109 @@
+﻿<link href="css/viewsStyles/addSighting.css" rel="stylesheet">
+
+
+
+<div ng-controller="addSightingCtrl" class="sighting-map padding">
+    <div ng-show="!rightCol(3)" class="animate-show">
+        <div class="accordeonHeader">
+            <span ng-bind='"add_sighting" | translate'></span>
+        </div>
+        <div class="list list-inset no-margin form-rounded " ng-class="{'shake':sightingInvalid}">
+            <div class="item item-input border-opacity-field-addSigh dropdownTransparent-addSigh">
+                <input class="login-text" type="text" ng-placeholder='"animal" | translate' id="input1" ng-model="newSighting.animal"><!--disabled-->
+                <div class="dropdown-addSigh" ng-show="currFieldAnimals.length>0">
+                    <!--show if there are animals on current field-->
+                    <div ng-click="toggleSightDetails(1);$event.stopPropagation();" style="width: 30px;height: 30px;padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu-addSigh pull-right" id="menuSightDetails1">
+                        <li ng-repeat="animal in currFieldAnimals"><a href="#" ng-click="selectAmimal(animal.name);$event.stopPropagation();" ng-bind="animal.name" style="text-decoration:none;"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh dropdownTransparent-addSigh">
+                <input class="login-text" type="text" ng-placeholder='"type" | translate' id="input2" ng-model="newSighting.type"><!--disabled-->
+                <div class="dropdown-addSigh" ng-show="currTypes.length>0">
+                    <div ng-click="toggleSightDetails(2);$event.stopPropagation();" style="width: 30px;height: 30px;padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu-addSigh pull-right " id="menuSightDetails2">
+                        <li ng-repeat="type in currTypes"><a href="#" ng-click="selectType(type);$event.stopPropagation();" ng-bind="type" style="text-decoration:none;"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh dropdownTransparent-addSigh" ng-click="toggleSightDetails(3)">
+                <input class="login-text" style="background-color:transparent;" type="text" ng-placeholder='"age" | translate' id="input3" ng-model="newSighting.age" readonly>
+                <div class="dropdown-addSigh">
+                    <div style="width: 30px;height: 30px;padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu-addSigh pull-right" id="menuSightDetails3">
+                        <li><a ng-click="selectAge('0-1');$event.stopPropagation();">0-1</a></li>
+                        <li><a ng-click="selectAge('1-2');$event.stopPropagation();">1-2</a></li>
+                        <li><a ng-click="selectAge('3-7');$event.stopPropagation();">3-7</a></li>
+                        <li><a ng-click="selectAge('8-15');$event.stopPropagation();">8-15</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh dropdownTransparent-addSigh" ng-click="toggleSightDetails(4)">
+                <input class="login-text" style="background-color:transparent;" type="text" ng-placeholder='"state" | translate' id="input4" ng-model="newSighting.state" readonly>
+                <div class="dropdown-addSigh">
+                    <div style="width: 30px;height: 30px;padding: 5px;">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                    <ul class="dropdown-menu-addSigh pull-right" id="menuSightDetails4">
+                        <li><a ng-click="selectState('Single');$event.stopPropagation();">Single</a></li>
+                        <li><a ng-click="selectState('Group');$event.stopPropagation();">Group</a></li>
+                        <li><a ng-click="selectState('Tableau');$event.stopPropagation();">Tableau</a></li>
+                        <!--<li><a href="#" ng-click="selectState('Else')">Else</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh " id="datepicker" style="background-color:transparent;" ng-click="selectDate()">
+                <label class="login-text">
+                    <span ng-bind="date(newSighting.date)"></span>
+                    <span>&nbsp;</span>
+                    <span ng-bind="getTime(time(newSighting.date))"></span>
+                </label>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh  dropdownTransparent-addSigh">
+                <div class="weather-hor-addSigh">
+                    <i ng-if="isSunTime(selectedField, newSighting.date)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].DayIcon"></i>
+                    <i ng-if="!isSunTime(selectedField, newSighting.date)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].NightIcon"></i>
+                    <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].tempC)"></span>
+                </div>
+                <div class="weather-hor-addSigh">
+                    <i class="icon weatherIcon wi wi-wind" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].WindIcon"></i>
+                    <span ng-bind="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].winddir16Point"></span>
+                    <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].windspeedKmph)"></span>
+                    <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                    <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                </div>
+                <div class="weather-hor-addSigh">
+                    <i class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].MoonIcon"></i>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh  thumbnails-container-addSigh">
+                <div>
+                    <div style="float: left; min-width: 100px; margin-top: 5px;">
+                        <div class="border-gray addImage" ng-click="addImage()">
+                            <i class="ion-image"></i>
+                            <div><span ng-bind='"add_image" | translate'></span></div>
+                        </div>
+                    </div>
+                    <div ng-repeat="image in newSightingImages track by $index" style="float: left; min-width: 100px;">
+                        <div class="preview-image" ng-style={'background-image':'url({{urlForImage(image)}})'}>
+                            <div class="button button-icon ion-close-circled" ng-click="deleteImage($index)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-input border-opacity-field-addSigh " style="background-color:transparent;">
+                <textarea class="login-text longText" type="text" ng-placeholder='"notes" | translate' ng-model="newSighting.note"></textarea>
+            </div>
+            <div class="button border-opacity buttonWhite" style="margin:0;padding: 5px 0;font-size:20px;font-weight:bold;width:100%;background-color:black !important;color:white !important ;" ng-click="createSighting()" ng-bind='"save" | translate'></div>
+        </div>
+    </div>
+    <div class="triangle-arrow-left"></div>
+
+</div>

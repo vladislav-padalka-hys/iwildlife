@@ -1,0 +1,56 @@
+﻿
+<div style="background-color: lightgray; height: 100%;">
+    <div class="padding-20">
+
+        <div class="custom-list list" ng-controller="aboutCtrl">
+            <label class="item item-input item-select custom-field" style="border: none;">
+                <div class="input-label" ng-bind='"language" | translate'>
+                </div>
+                <select class="custom-select" ng-model="preferences.language" ng-change="useLanguage(preferences.language)">
+                    <i class="button-icon icon ion-android-contacts"></i>
+                    <option selected>English</option>
+                    <option>Dutch</option>
+                    <option>French</option>
+                    <option>Spanish</option>
+                    <option>German</option>
+                </select>
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input item-select custom-field" style="border: none;">
+                <div class="input-label" ng-bind='"time" | translate'>
+                </div>
+                <select class="custom-select" ng-model="preferences.time" ng-change="useTime(preferences.time)">
+                    <option>24</option>
+                    <option selected>12</option>
+                </select>
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input item-select custom-field" style="border: none;">
+                <div class="input-label" ng-bind='"temperature" | translate'>
+                </div>
+                <select class="custom-select" ng-model="preferences.temperature" ng-change="useTemperature(preferences.temperature)">
+                    <option selected>C</option>
+                    <option>F</option>
+                </select>
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input item-select custom-field" style="border: none;">
+                <div class="input-label" ng-bind='"weight" | translate'>
+                </div>
+                <select class="custom-select" ng-model="preferences.weight" ng-change="useWeight(preferences.weight)">
+                    <option>kg</option>
+                    <option selected>pounds</option>
+                </select>
+            </label>
+            <hr class="custom-fields" />
+            <label class="item item-input item-select custom-field" style="border: none;">
+                <div class="input-label" ng-bind='"distance" | translate'>
+                </div>
+                <select class="custom-select" ng-model="preferences.distance" ng-change="useDistance(preferences.distance)">
+                    <option>km</option>
+                    <option selected>miles</option>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>

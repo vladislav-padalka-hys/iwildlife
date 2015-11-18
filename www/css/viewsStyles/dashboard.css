@@ -1,0 +1,410 @@
+.fieldsSlick {
+    width: 100%;
+}
+
+    .fieldsSlick div {
+        /*margin-right:10px;*/
+    }
+
+.headerText {
+    display: inline-block;
+    padding: 8px 0;
+    font-size: 18px;
+    color: white;
+}
+
+.iconBig {
+    font-size: 40px !important;
+}
+
+.iconGear {
+    /*margin-left: 20px;*/
+    /*font-size: 18px;*/
+    color: white !important;
+    margin-top: -10px;
+    float: right;
+}
+
+.custom-popup.popup-container .popup {
+    position: absolute;
+    top: 0px;
+    left: auto;
+    right: 0px;
+    bottom: auto;
+    background: rgba(5, 5, 5, 0.8);
+    width: 30%;
+    min-width: 300px;
+    min-height: 250px;
+    height: 100%;
+    max-height: 500px;
+    z-index: 99999;
+}
+
+    .custom-popup.popup-container .popup .popup-head {
+        height: 0%;
+        padding: 0px;
+        border: none;
+    }
+
+    .custom-popup.popup-container .popup .popup-body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .custom-popup.popup-container .popup .popup-buttons {
+        height: 0%;
+    }
+
+
+
+.weatherListBlock {
+    display: inline;
+    background-color: transparent;
+    color: white;
+    border: none;
+    position: relative;
+}
+
+/*//////////////////////////////////////////////*/
+
+#menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+    #menu a {
+        /*margin-left:-150px;*/
+        display: block;
+        background: white;
+        width: 195px;
+        height: 40px;
+        padding: 0 0 0 10px;
+        font: bold 13px Helvetica, sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.4);
+        line-height: 40px;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+        #menu a:nth-child(2) {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        #menu a:last-child {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        #menu a:hover {
+            color: #555;
+        }
+
+            #menu a:hover > .fa {
+                color: #555;
+            }
+
+#arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid white;
+    margin-left: 140px;
+}
+/*=======*/
+/*﻿.dashboardPane{
+    background-image: url(../../images/dashboard.png); background: url(../images/dashboard.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: 100% 100%
+  }*/
+
+.dashboardPane {
+    /*-webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;*/
+}
+
+.scrollRowPosition {
+}
+
+.weatherBlockRowPosition {
+}
+
+.firstRowPosition {
+    height: 120px;
+}
+
+.thirdRowPosition {
+    height: 200px;
+}
+
+.fifthRowPosition {
+    height: 100%;
+}
+
+
+
+.fieldsList {
+    padding: 0;
+    display: -webkit-flex;
+    margin: auto;
+}
+
+.weatherItem {
+    background-color: transparent;
+    border: none;
+    padding: 5px 0px 5px 54px;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    font-size: 16px;
+}
+
+.fieldBrightFilter {
+    background-color: black;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.4;
+    width: 250px;
+    height: 250px;
+    top: 1px;
+    box-shadow: 1px 5px 8px 1px rgba(0,0,0,0.75);
+}
+
+.fieldExpandedBrightFilter {
+    background-color: black;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.4;
+    width: 250px;
+    height: 300px;
+    top: 1px;
+    box-shadow: 1px 5px 8px 1px rgba(0,0,0,0.75);
+}
+
+.backImage-dash {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background-size: cover !important;
+    top: 1px;
+    z-index: -100;
+}
+
+.dashArrowDownIcon {
+    height: 100% !important;
+    font-size: 32px !important;
+}
+
+.weatherIcon {
+    height: 100% !important;
+    font-size: 25px !important;
+}
+
+.dashFieldTitle {
+    padding-left: 16px;
+    background-color: transparent;
+    color: white;
+    line-height: normal;
+    font-size: 25px;
+    position: relative;
+    /*position:absolute;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashFieldSubTitle {
+    margin-top: 95px;
+    padding-left: 16px;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    position: relative;
+    /*position:absolute;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+/*.weatherBlock{
+    background-color:black;
+    display:inline-block; 
+    width:100%;     
+    height:auto;
+    padding-bottom:10px;
+    opacity:0.4;
+}*/
+
+.fieldWrap {
+    /*height:300px;*/
+    padding: 0 10px;
+    display: inline-block;
+    vertical-align:top;
+}
+
+.dashArrow {
+    padding-bottom: 50px;
+    font-size: 50px;
+    color: white;
+}
+
+.scrollSize {
+    height: 260px;
+}
+
+.scroll-bar-indicator {
+    display: none;
+}
+
+.addFieldItem {
+    border: 3px dashed white;
+    border-radius: 7px;
+    background-color: rgba(255,255,255,0.2);
+    height: 200px;
+    width: 200px;
+    margin: 25px;
+    float: right;
+}
+
+.addFieldText {
+    margin: auto;
+    color: white;
+    font-size: 25px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    font-family: FuturaStd-Medium;
+}
+
+@media screen and (orientation:portrait) {
+    .WeatherWindowContainer {
+        /*position: absolute;
+        top: 40%;
+        left: -2%;*/
+        position: relative;
+        /*top: 94px;
+        right: 14px;*/
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .field {
+        height: 250px;
+        width: 250px;
+        margin-bottom: 45px;
+        /*width: 300%;*/
+        background-size: 100% 100%;
+        margin: auto;
+    }
+
+    .weatherBlock {
+        position: absolute;
+        left: 45px;
+        bottom: -85px;
+        /*bottom: 188px;*/
+        background-color: black;
+        display: inline-block;
+        width: auto;
+        width: 212px;
+        height: auto;
+        padding: 10px;
+        opacity: 0.4;
+    }
+
+    .weatherList {
+        padding-top: 10px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        /*position: relative;*/
+        /*position: absolute;*/
+        /*width: 32%;*/
+        /*left: 60%;*/
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .WeatherWindowContainer {
+        /*position: absolute;
+        top: 33%;
+        left: 9%;*/
+        position: relative;
+        left: 17.6%;
+        bottom: 63px;
+    }
+
+    .field {
+        height: 250px;
+        width: 250px;
+        margin-bottom: 45px;
+        background-size: 100% 100%;
+        margin: auto;
+    }
+
+    .weatherBlock {
+        position: absolute;
+        left: 140px;
+        bottom: -25px;
+        background-color: black;
+        display: inline-block;
+        width: auto;
+        width: 212px;
+        height: auto;
+        padding: 10px;
+        opacity: 0.4;
+    }
+
+    .weatherList {
+        padding-top: 10px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        /*position: relative;*/
+        /*position: absolute;*/
+        /*width: 24%;*/
+        /*left: 70%;*/
+    }
+}
+
+
+.WeatherWindow {
+    width: 50%;
+    height: auto;
+}
+
+
+.weather-container-dash {
+    position: absolute;
+    z-index: -1;
+}
+
+
+.upper-margin-dash {
+    padding: 40px 20px 10px;
+}
+
+.welcome-message-dash {
+    color: white;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+    .welcome-message-dash span {
+        font-size: 25px;
+        vertical-align: middle;
+    }
+
+.invisible {
+    visibility: hidden;
+}

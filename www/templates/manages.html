@@ -1,0 +1,28 @@
+﻿<link href="css/viewsStyles/manages.css" rel="stylesheet">
+<div ng-controller="ManagesCtrl">
+    <div class="manage-header">Manage Users</div>
+    <div class="manage-x">
+        <img src="images/user_management/white_x@2x.png" class="manage-x-icon" ng-click="manages.close()" />
+    </div>
+    <div class="manage-edit">
+        <div ng-repeat="user in selectedField.Users"  ng-click="">
+            <div class="row manage-users" ng-if="!isCurrUser(user)">
+                <div class="col-50 manage-user">
+                    <p style="font-size:20px;" ng-bind="user.Email"></p>
+                </div>
+                <div class="col-50 manage-role">
+                    <div class="role" ng-click="changeRole('Guest', user)" data-id="{{user.UserName}}">Guest</div>
+                    <div class="role" ng-click="changeRole('Manager', user)" data-id="{{user.UserName}}">Manager</div>
+                    <!--<div class="role" ng-click="changeRole('Administrator', user)" data-id="{{user.UserName}}">Administrator</div>-->
+                    <div class="current-role" data-id="{{user.UserName}}" ng-bind="getCurrentRole(user)"></div>
+                    <div class="change-role" ng-click="initChanging(user)">
+                        <img src="images/user_management/arrow@2x.png" class="change-role-icon" data-id="{{user.UserName}}" />
+                    </div>
+                    <div class="close-change-role" ng-click="closeChanging(user)">
+                        <img src="images/user_management/black_x@2x.png" class="close-change-role-icon" data-id="{{user.UserName}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    

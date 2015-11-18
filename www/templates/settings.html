@@ -1,0 +1,65 @@
+﻿<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+</head>
+<link rel="stylesheet" type="text/css" href="css/viewsStyles/settings.css">
+<ion-side-menus>
+    <ion-side-menu-content>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" style="background-color: lightgray;">
+        <ion-content style="margin-top:20px;">
+            <ul class="list">
+                <ion-item menu-close ui-sref="settings.about" class="menu-field">
+                    <div class="row row-center">
+                        <div class="col-10 col-center">
+                            <i class="ion-information-circled" style="color: green;"></i>
+                        </div>
+                        <div class="col col-center">
+                            <div class="menu-text" ng-bind='"about" | translate'></div>
+                            <div>
+                                <hr class="custom-menu" />
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item menu-close ui-sref="settings.personalInfo" class="menu-field">
+                    <div class="row row-center">
+                        <div class="col-10 col-center">
+                            <i class="ion-person" style="color: green;"></i>
+                        </div>
+                        <div class="col col-center">
+                            <div class="menu-text" ng-bind='"personal_info" | translate'></div>
+                            <div>
+                                <hr class="custom-menu" />
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item menu-close ui-sref="settings.preferences" class="menu-field">
+                    <div class="row row-center">
+                        <div class="col-10 col-center">
+                            <i class="ion-ios-gear" style="color: green;"></i>
+                        </div>
+                        <div class="col col-center">
+                            <div class="menu-text" ng-bind='"preferences" | translate'></div>
+                            <div>
+                                <hr class="custom-menu" />
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item menu-close ui-sref="dashboard" class="menu-field">
+                    <div class="row row-center">
+                        <div class="col-10 col-center">
+                            <i class="ion-chevron-left" style="color: green;"></i>
+                        </div>
+                        <div class="col col-center">
+                            <div class="menu-text" ng-bind='"back" | translate'></div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ul>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

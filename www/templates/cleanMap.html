@@ -1,0 +1,18 @@
+﻿<link href="css/viewsStyles/cleanMap.css" rel="stylesheet">
+
+<div data-tap-disabled="true" id="cleanMap" class="mapContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
+
+<ion-header-bar align-title="center" class="transparentBar ">
+    <button class="button button-icon button-clear ion-chevron-left cleanMapHeader" ng-click="backToFieldDetails()" ng-bind='"back" | translate'></button>
+</ion-header-bar>
+
+
+
+
+
+<img src="images/field/ico_save@2x.png" ng-if="isSightingPosted" ng-click="createSighting()" class="saveField-cleanMap" ng-bind='"save" | translate' />
+
+
+
+

@@ -1,0 +1,47 @@
+﻿.showPoi-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 38px;
+    height: 400px;
+    width: 240px;
+    margin-top: -180px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.triangle-arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 15px solid rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 200px;
+    left: -15px;
+    z-index: -1;
+}
+
+.editButton-poi {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    z-index: 200;
+}
+
+.animalDetailsContainer-showPoi {
+    padding: 10px;
+}
+
+    .animalDetailsContainer-showPoi div {
+        color: white;
+    }
+
+
+.scrollVertical-showPoi {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

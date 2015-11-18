@@ -1,0 +1,183 @@
+﻿
+.editPoi-modal {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    /*height: 520px !important;*/
+    width: 270px !important;
+    margin-left: 25px !important;
+    margin-top: -145px !important;
+    bottom: 235px !important;
+    background-color: transparent;
+}
+
+    .editPoi-modal .list {
+        background-color: white;
+    }
+
+
+.item {
+    z-index: auto;
+    padding: 5px 10px;
+}
+
+
+    .item input {
+        padding-left: 0;
+    }
+
+
+.addImage {
+    text-align: center;
+    padding: 5px;
+    height: 70px;
+}
+
+    .addImage i {
+        font-size: 40px;
+    }
+
+.preview-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+    .preview-image div {
+        margin: auto;
+        height: 100%;
+        display: block;
+        font-size: 20px;
+        line-height: 70px;
+    }
+
+.thumbnails-container-editPOI {
+    background-color: transparent;
+    color: grey;
+    padding: 10px;
+}
+
+    .thumbnails-container-editPOI > div {
+        max-width: 300px;
+        margin: auto;
+    }
+
+
+.form-rounded {
+    border-radius: 7px;
+}
+
+
+
+
+
+.border-opacity-field-editPOI {
+    border-bottom: none;
+    border-color: rgba(221,221,221,0.3);
+    border-width: 1px;
+}
+
+
+.border-gray {
+    border: 1px solid red;
+    border-color: rgba(221,221,221,0.5);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.accordeonHeader {
+    font-size: 20px;
+    color: black;
+}
+
+
+
+/*.thirdColumn {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+}*/
+
+
+
+.animate-show .item:first-child {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.animate-show .item:last-child {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+
+
+.dropdownTransparent-editPOI {
+    background-color: transparent;
+    overflow: visible;
+}
+
+    .dropdownTransparent-editPOI > input {
+        background-color: transparent;
+        color: black !important;
+    }
+
+/*.dropdownTransparent-editPOI > div {
+        float: right;
+        color: black;
+        padding: 0 5px;
+    }*/
+
+
+/*/////////////////////////////////////////////////////////////////////*/
+
+
+
+
+.arrowDownIcon {
+    height: 100% !important;
+    font-size: 32px !important;
+}
+
+
+
+.dropdownTransparent-editPOI.item.activated {
+    background-color: transparent !important;
+}
+
+
+
+
+
+
+.item label {
+    color: black !important;
+}
+
+.modal-backdrop-bg {
+    background-color: transparent !important;
+}
+
+.triangle-arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 15px solid white;
+    position: absolute;
+    top: 155px;
+    left: -5px;
+    z-index: -1;
+}
+
+.deletePOI {
+    position: absolute;
+    right: 10px;
+    top: -8px;
+    width: 22px;
+    height: 30px;
+}

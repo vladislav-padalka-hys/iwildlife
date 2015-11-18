@@ -1,0 +1,243 @@
+﻿
+
+.item {
+    z-index: auto;
+    padding: 5px 10px;
+}
+
+
+    .item input {
+        padding-left: 0;
+    }
+
+
+.addImage {
+    text-align: center;
+    padding: 5px;
+    height: 70px;
+}
+
+    .addImage i {
+        font-size: 40px;
+    }
+
+.preview-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 70px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+    .preview-image div {
+        margin: auto;
+        height: 100%;
+        display: block;
+        font-size: 20px;
+        line-height: 70px;
+    }
+
+.thumbnails-container-editSigh {
+    background-color: transparent;
+    color: grey;
+    padding: 10px;
+}
+
+    .thumbnails-container-editSigh > div {
+        max-width: 300px;
+        margin: auto;
+    }
+
+
+.form-rounded {
+    border-radius: 7px;
+}
+
+
+
+
+
+.border-opacity-field-editSigh {
+    border-bottom: none;
+    border-color: rgba(221,221,221,0.3);
+    border-width: 1px;
+}
+
+
+.border-gray {
+    border: 1px solid red;
+    border-color: rgba(221,221,221,0.5);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.accordeonHeader {
+    font-size: 20px;
+    color: black;
+}
+
+
+
+/*.thirdColumn {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+}*/
+
+
+
+.animate-show .item:first-child {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.animate-show .item:last-child {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+
+
+.dropdownTransparent-editSigh {
+    background-color: transparent;
+    overflow: visible;
+}
+
+    .dropdownTransparent-editSigh > input {
+        background-color: transparent;
+        color: black !important;
+    }
+
+    .dropdownTransparent-editSigh > div {
+        float: right;
+        color: black;
+        padding: 0 5px;
+    }
+
+
+/*/////////////////////////////////////////////////////////////////////*/
+.dropdown-menu-editSigh {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+    .dropdown-menu-editSigh.pull-right {
+        right: 0;
+        left: auto;
+    }
+
+    .dropdown-menu-editSigh .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
+    }
+
+    .dropdown-menu-editSigh > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+    }
+
+
+.arrowDownIcon {
+    height: 100% !important;
+    font-size: 32px !important;
+}
+
+
+
+.dropdownTransparent-editSigh.item.activated {
+    background-color: transparent !important;
+}
+
+
+
+
+.editSighting-modal {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    height: 520px !important;
+    width: 270px !important;
+    margin-left: 25px !important;
+    margin-top: -235px !important;
+    bottom: 235px !important;
+    background-color: transparent;
+}
+
+    .editSighting-modal .list {
+        background-color: white;
+    }
+
+.item label {
+    color: black !important;
+}
+
+.modal-backdrop-bg {
+    background-color: transparent !important;
+}
+
+.triangle-arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 15px solid white;
+    position: absolute;
+    bottom: 270px;
+    left: -5px;
+    z-index: -1;
+}
+
+
+.dropdown-editSigh .ion-chevron-down {
+    color: grey;
+}
+
+.weather-hor-editSigh {
+    display: inline;
+    font-size: 14px;
+}
+
+    .weather-hor-editSigh span {
+        margin: 0 0 0 5px;
+    }
+
+        .weather-hor-editSigh span:first-child {
+            margin-left: 0;
+        }
+
+
+.deleteSighting {
+    position: absolute;
+    right: 10px;
+    top: -8px;
+    width: 22px;
+    height: 30px;
+}

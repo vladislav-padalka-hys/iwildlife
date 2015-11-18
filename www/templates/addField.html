@@ -1,0 +1,57 @@
+﻿<link rel="stylesheet" type="text/css" href="css/viewsStyles/addField.css">
+
+
+<div class="add-field-header" id="popup">
+    <div class="row row-center header-row">
+        <div class="col-90">
+            <span ng-bind='"add_field" | translate'></span>
+        </div>
+        <div class="col-10">
+            <a class="button button-icon ion-close" ng-controller="addFieldCtrl" style="color: white;" ng-click="returnToDashboard()"></a>
+        </div>
+    </div>
+</div>
+<div class="add-field-body" ng-controller="addFieldCtrl" ng-class="{'shake':fieldValuesInvalid}">
+    <input type="text" class="rounded-name" ng-placeholder='"name" | translate' ng-model="field.name">
+    <input type="text" class="address-field" ng-placeholder='"address" | translate' id="address" ng-model="field.address">
+    <div class="images row row-center">
+        <div class="previews col col-center">
+            <!--<ion-scroll direction="x" class="wide-as-needed">-->
+
+            <div class="preview" style="border: 1px solid rgba(211, 211, 211, 0.38); -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;" ng-click="addImage()" ng-if="newField.Image.SRC == ''">
+                <div class="add-image-button">
+                    <a class="button button-icon ion-image add-image-icon"></a><br />
+                    <span ng-bind='"add_image" | translate'></span>
+                </div>
+            </div>
+
+            <div class="preview" ng-if="newField.Image.SRC != '' ">
+                <div class="preview-image" ng-style={'background-image':'url({{urlForImage(newField.Image.SRC)}})'}></div>
+                <a class="button button-icon ion-close-circled close-btn" ng-click="deleteImage()"></a>
+            </div>
+
+            <!--<div class="preview" style="width:100px" ng-if="newField.Image.SRC != ''">
+                <img ng-src="{{urlForImage(newField.Image.SRC)}}" style="display: inline"></img>
+                        <a class="button button-icon ion-close-circled close-btn" ng-click="deleteImage()"></a>
+
+                    </div>-->
+            <!--<div class="preview">
+                        <img src="https://fuzfeed.com/wp-content/uploads/2014/10/14823-Baby-Hermanns-Tortoise-white-background.jpg"></img>
+                        <a class="button button-icon ion-close-circled close-btn" ng-click="deleteImage()"></a>
+                    </div>
+                    <div class="preview">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-yg9wDEn7a4dNNDDpxopWEP4HWdVHBFvN9EZHVh0Bwo2RBhCeJCLwsQ"></img>
+                        <a class="button button-icon ion-close-circled close-btn" ng-click="deleteImage()"></a>
+            </div>
+            </ion-scroll>-->
+        </div>
+    </div>
+
+    <!--   <a class="button button-icon icon ion-image"></a>-->
+    <textarea class="field-note" ng-placeholder='"notes" | translate' ng-model="field.note"></textarea>
+    <button ng-click="saveField()" class="button-addfield rounded-save-button" ng-bind='"save" | translate'></button>
+</div>

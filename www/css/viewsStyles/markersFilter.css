@@ -1,0 +1,111 @@
+﻿.markersFilter-modal {
+    position: relative;
+    top: 85px;
+    width:300px;
+    float:right;
+    background-color: transparent;
+    right: 50%;
+    margin-right: -150px;
+}
+
+
+
+.card, .list-inset {
+    overflow: visible !important;
+}
+
+.triangle-arrow-up {
+    width: 0;
+    height: 0;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid white;
+    position: absolute;
+    top: -10px;
+    left: 135px;
+    /*z-index: -10;*/
+}
+
+/*WHITE*/
+.dropdownTransparent-markFilter {
+    background-color: transparent;
+    overflow: visible;
+}
+
+    .dropdownTransparent-markFilter > input {
+        background-color: transparent !important;
+        color: black !important;
+    }
+
+    .dropdownTransparent-markFilter > div {
+        float: right;
+        color: black;
+        padding: 0 5px;
+    }
+
+    .dropdownTransparent-markFilter span {
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+.dropdown .ion-chevron-down {
+    color: grey;
+}
+
+
+/*DARK*/
+
+.markersFilter-modal-dark {
+    position: relative;
+    top: 80px;
+    width:30%;
+    float:right;
+    background-color: transparent;
+    margin-right:48%;
+}
+
+
+.dropdownTransparent-markFilter-dark {
+    background-color: transparent;
+    overflow: visible;
+}
+
+    .dropdownTransparent-markFilter-dark > input {
+        background-color: transparent !important;
+        color: black !important;
+    }
+
+    .dropdownTransparent-markFilter-dark > div {
+        float: right;
+        color: black;
+        padding: 0 5px;
+    }
+
+    .dropdownTransparent-markFilter-dark span {
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+.triangle-arrow-up-dark {
+    width: 0;
+    height: 0;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid white;
+    position: absolute;
+    top: -10px;
+    right: 36px;
+    z-index: -10;
+}
+
+
+.modal-backdrop-bg {
+    background-color: transparent !important;
+}
+
+
+
+
+/*.dropdown-dark .ion-chevron-down {
+    color: grey;
+}*/

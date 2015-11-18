@@ -1,0 +1,486 @@
+﻿
+<!--<link href="css/viewsStyles/fieldDetails.css" rel="stylesheet">-->
+<ion-view class="fieldDetailsPane" ng-style="selectedField.Image && selectedField.Image.SRC && {'background':'url('+urlForImage(selectedField.Image.SRC)+')'}">
+    <div class="dark-background"></div>
+
+    <ion-header-bar align-title="center" class="transparentBar fdHeader row row-center">
+        <div class="backButtonContainer col col-20">
+            <button class="button button-icon button-clear ion-chevron-left fdHeaderButton" ui-sref="dashboard" ng-bind='"back" | translate'></button>
+        </div>
+        <div class="fdHeaderTitle col col-center">
+            <div class="row row-center">
+                <div class="col col-center">
+                    {{selectedField.Name}}
+                </div>
+            </div>
+            <div class="filterBtn row row-center" ng-click="filterMarkers()">
+                <div class="col col-center" style="white-space: nowrap;">
+                    <!--<span ng-bind='"show" | translate'></span>-->
+                    <div class="filterBtnText" style="line-height: 25px;">
+                        {{filterStr}}
+                    </div>
+                    <div class="filterBtnImg">
+                        <img src="images/field/filter_icon/filter_dropdown_sign_white@2x.png" />
+                    </div>
+
+                </div>
+                <!--<div class="col col-center" style="max-width:45%;">
+
+                </div>-->
+            </div>
+        </div>
+
+        <div class="fdHeaderButtonsContainer col col-20">
+            <img src="images/field/map_mode@2x.png" class="" style="margin-right: auto;" ui-sref="map"></img>
+            <img src="images/user_management/ico_admin_white@2x.png" class="" ng-click="popover.show($event)" ng-if="isAdmin(currUser, selectedField)" />
+            <img src="images/user_management/ico_manager_white@2x.png" class="" ng-click="popover.show($event)" ng-if="!isAdmin(currUser, selectedField) && isManager(currUser, selectedField)" />
+            <img src="images/field/ico_edit_field_white@2x.png" class="" ng-click="editField()" ng-if="isAdmin(currUser, selectedField)" />
+            <img src="images/field/export_icon/export_white@2x.png" class="" ng-click="exportData(selectedField.FieldId)" style="width:40px !important;" />
+        </div>
+    </ion-header-bar>
+
+    <ion-content scroll="false" style="top:75px!important; bottom:60px !important;" class="index">
+
+        <ion-scroll direction="y" class="scrollVertical" style="left:0 !important">
+            <div class="padding" style="position:relative;">
+
+                <div class="fieldBGImage fieldImage" ng-style="gradient(selectedField)">
+                    <div class="sightingFilterGradient" ng-if="selectedField.Image.SRC"></div>
+                    <div class="byHunter" ng-if="selectedField.Image.SRC">
+                        <span ng-bind="date(selectedField.Date)"></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind='"by" | translate'></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="selectedField.Owner.UserName"></span>
+                    </div>
+                    <div class="list weatherListFD" ng-if="selectedField.weather && selectedField.weather.length>0 && getWeatherIndex(selectedField)!=-1">
+
+                        <a class="item-icon-left item-icon-right weatherItem" ng-click="expandWeather()">
+                            <i ng-if="isSunTime(selectedField)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].DayIcon"></i>
+                            <i ng-if="!isSunTime(selectedField)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].NightIcon"></i>
+                            <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].tempC)"></span>
+                            <i class="icon arrowDownIcon ion-close" ng-if="isExpanded"></i>
+                            <i class="icon arrowDownIcon ion-chevron-down" ng-if="!isExpanded"></i>
+                        </a>
+                        <a class="item-icon-left weatherItem" ng-click="expandWeather()">
+                            <i class="icon weatherIcon wi wi-wind" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].WindIcon"></i>
+                            <span ng-bind="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].winddir16Point"></span>
+                            <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].windspeedKmph)"></span>
+                            <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                            <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                        </a>
+                        <a class="item-icon-left weatherItem">
+                            <i class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].MoonIcon"></i>
+                            <span ng-bind="selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject.Moon.moonphase"></span>
+                        </a>
+                        <div ng-show="isExpanded" class="animate-show">
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-strong-wind"></i>
+                                <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].WindChillC)"></span>
+                            </a>
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-sunrise"></i>
+                                <span ng-bind="getTime(getSunriseTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                            </a>
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-sunset"></i>
+                                <span ng-bind="getTime(getSunsetTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                            </a>
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-horizon"></i>
+                                <span ng-bind="getTime(getTwi12StartTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                                <span>&nbsp;/&nbsp;</span>
+                                <span ng-bind="getTime(getTwi12EndTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                            </a>
+
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-moonrise"></i>
+                                <span ng-bind="getTime(getMoonriseTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                            </a>
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon wi wi-moonset"></i>
+                                <span ng-bind="getTime(getMoonsetTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+                            </a>
+
+                            <a class="item-icon-left weatherItem">
+                                <i class="icon weatherIcon ion-ios-eye"></i>
+                                <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].visibility)"></span>
+                                <span ng-if="distance == 'km'" ng-bind='"km" | translate'></span>
+                                <span ng-if="distance != 'km'" ng-bind='"miles" | translate'></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="sighting in selectedField.Sightings">
+                    <!--<div class="fieldImage fieldBGImage"
+                             ng-style={'background-image':'url({{urlForImage(sighting.defaultImage)}})'}>
+                        <div class="sightingBrightFilter"></div>
+                        <div class="byHunter.UserName">
+                            <span ng-bind="sighting.Date"></span>
+                            <span>&nbsp;</span>
+                            <span ng-bind='"by" | translate'></span>
+                            <span>&nbsp;</span>
+                            <span ng-bind="sighting.Hunter.UserName"></span>
+                            {{date(sighting.Date) + " by " + sighting.Hunter.UserName.UserName}}
+                        </div>
+                    </div>-->
+                    <!-- </div>-->
+
+                    <div ng-repeat="image in sighting.Images" style="position:relative">
+                        <!--<div ng-repeat="t in test" style="position:relative;">-->
+                        <div class="sightingFilterGradient"></div><!--ng-if="isLocal(image.SRC)"-->
+                        <div class="fieldImage fieldBGImage backgroundSize"
+                             ng-style="gradientImg(urlForImage(image.SRC))">
+
+                            <!--style="background-image: url('http://www.cliparthut.com/clip-arts/65/bouncy-balls-65892.jpg')">-->
+                            <!-- {{urlForImage(image.SRC)}} -->
+                            <div class="sightingBrightFilter"></div>
+                            <div class="byHunter">
+                                <span ng-bind="date(sighting.Date)"></span>
+                                <span>&nbsp;</span>
+                                <span ng-bind='"by" | translate'></span>
+                                <span>&nbsp;</span>
+                                <span ng-bind="sighting.Hunter.UserName"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-scroll>
+
+        <ion-scroll direction="y" class="scrollVertical" style="left:30% !important">
+            <div class="padding text-white">
+                <div class="fieldNote">
+                    <p>{{selectedField.Note}}</p>
+                </div>
+                <div class="sightingsInfo" ng-if="selectedField.Sightings.length > 0">
+                    <div class="sightingsCount">
+                        <span ng-bind='sightCount'></span>
+                        <span ng-bind='"sightings" | translate'></span>
+                    </div>
+                    <!--<br />-->
+                    <div class="sightingsDates">
+                        <span ng-bind='"from" | translate'></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="date(minDate)"></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind='"to" | translate'></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="date(maxDate)"></span>
+                    </div>
+                </div>
+                <div class="list sightingList">
+                    <div ng-repeat="sighting in filteredSightings" ng-click="showSightingInfo(sighting,3)">
+                        <div ng-show="isDateInRange(sighting.Date)">
+                            <div ng-class="{'sightingItem-firstChild': $first}" class="sightingItem row row-center">
+                                <div class="col col-67 col-left">
+                                    <p style="font-size: 20px;" ng-bind="sighting.Animal"></p>
+                                    <p style="font-size: 15px; margin-bottom: 0">
+                                        <span ng-bind="date(sighting.Date)"></span>
+                                        <span>&nbsp;</span>
+                                        <span ng-bind="getTime(time(sighting.Date))"></span>
+                                        <span>&nbsp;</span>
+                                        <span ng-bind='"by" | translate'></span>
+                                        <span>&nbsp;</span>
+                                        <span ng-bind="sighting.Hunter.UserName"></span>
+                                    </p>
+                                </div>
+                                <div class="col col-center animate-show img-col">
+                                    <div ng-class="{disabled:selectedSighting != sighting}" class="selectedSightingBackground">
+                                        <div style="background-size: cover; height: 100%;" ng-style="sighting.Image && sighting.Image.SRC && {'background-image':'url('+urlForImage(sighting.Image.SRC)+')'}"></div>
+                                    </div>
+
+                                    <!--<img class="selected-sighting-div" ng-show="selectedSighting == sighting" src="images/sighting-bg.png">
+                                    <img class="sighting-image" ng-show="sighting.Image" ng-src="{{urlForImage(sighting.Image.SRC)}}"/>-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-scroll>
+
+        <div class="thirdColumn padding">
+            <div ng-if="selectedField.weather && selectedField.weather.length>0 && (isAdmin(currUser, selectedField) || isManager(currUser, selectedField))" ng-show="!rightCol(3) && !rightCol(4)" class="animate-show">
+                <ion-scroll direction="y" class="scrollVertical animalDetailsContainer" style="left: 0 !important; width: 100%;">
+                    <div class="accordeonHeader">
+                        <span ng-bind='"add_sighting" | translate'></span>
+                    </div>
+                    <div class="list list-inset no-margin form-rounded " style="background-color:transparent" ng-class="{'shake':sightingInvalid}">
+                        <div class="item item-input border-opacity-field dropdownTransparent">
+                            <input class="login-text" type="text" ng-placeholder='"animal" | translate' id="input1" ng-model="newSighting.animal"><!--disabled-->
+                            <div class="dropdown" ng-show="currFieldAnimals.length>0">
+                                <!--show if there are animals on current field-->
+                                <div ng-click="toggleSightDetails(1);$event.stopPropagation();" style="width: 30px;height: 30px;padding: 5px;">
+                                    <i class="ion-chevron-down"></i>
+                                </div>
+                                <ul class="dropdown-menu pull-right dropdown-right" id="menu1">
+                                    <li ng-repeat="animal in currFieldAnimals"><a href="#" ng-click="selectAmimal(animal.name);$event.stopPropagation();" ng-bind="animal.name" style="text-decoration:none;"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field dropdownTransparent">
+                            <input class="login-text" type="text" ng-placeholder='"type" | translate' id="input2" ng-model="newSighting.type"><!--disabled-->
+                            <div class="dropdown" ng-show="currTypes.length>0">
+                                <div ng-click="toggleSightDetails(2);$event.stopPropagation();" style="width: 30px;height: 30px;padding: 5px;">
+                                    <i class="ion-chevron-down"></i>
+                                </div>
+                                <ul class="dropdown-menu pull-right  dropdown-right" id="menu2">
+                                    <li ng-repeat="type in currTypes"><a href="#" ng-click="selectType(type);$event.stopPropagation();" ng-bind="type" style="text-decoration:none;"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field dropdownTransparent" ng-click="toggleSightDetails(3)">
+                            <input class="login-text" style="background-color:transparent;" type="text" ng-placeholder='"age" | translate' id="input3" ng-model="newSighting.age" readonly>
+                            <div class="dropdown">
+                                <div style="width: 30px;height: 30px;padding: 5px;">
+                                    <i class="ion-chevron-down"></i>
+                                </div>
+                                <ul class="dropdown-menu pull-right  dropdown-right" id="menu3">
+                                    <li><a ng-click="selectAge('0-1');$event.stopPropagation();">0-1</a></li>
+                                    <li><a ng-click="selectAge('1-2');$event.stopPropagation();">1-2</a></li>
+                                    <li><a ng-click="selectAge('3-7');$event.stopPropagation();">3-7</a></li>
+                                    <li><a ng-click="selectAge('8-15');$event.stopPropagation();">8-15</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field dropdownTransparent" ng-click="toggleSightDetails(4)">
+                            <input class="login-text" style="background-color:transparent;" type="text" ng-placeholder='"state" | translate' id="input4" ng-model="newSighting.state" readonly>
+                            <div class="dropdown">
+                                <div style="width: 30px;height: 30px;padding: 5px;">
+                                    <i class="ion-chevron-down"></i>
+                                </div>
+                                <ul class="dropdown-menu pull-right dropdown-right" id="menu4">
+                                    <li><a ng-click="selectState('Single');$event.stopPropagation();">Single</a></li>
+                                    <li><a ng-click="selectState('Group');$event.stopPropagation();">Group</a></li>
+                                    <li><a ng-click="selectState('Tableau');$event.stopPropagation();">Tableau</a></li>
+                                    <!--<li><a href="#" ng-click="selectState('Else')">Else</a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field " id="datepicker" style="background-color:transparent;color:white !important;" ng-click="selectDate()">
+                            <label class="login-text">
+                                <span ng-bind="date(newSighting.date)"></span>
+                                <span>&nbsp;</span>
+                                <span ng-bind="getTime(time(newSighting.date))"></span>
+                            </label>
+                        </div>
+                        <div class="item item-input border-opacity-field  dropdownTransparent">
+                            <div class="weather-hor">
+                                <i ng-if="isSunTime(selectedField, newSighting.date)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].DayIcon"></i>
+                                <i ng-if="!isSunTime(selectedField, newSighting.date)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].NightIcon"></i>
+                                <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].tempC)"></span>
+                            </div>
+                            <div class="weather-hor">
+                                <i class="icon weatherIcon wi wi-wind" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].WindIcon"></i>
+                                <span ng-bind="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].winddir16Point"></span>
+                                <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].hourly[getHourly(newSighting.date)].windspeedKmph)"></span>
+                                <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                                <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                            </div>
+                            <div class="weather-hor">
+                                <i class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField, newSighting.date)].MoonIcon"></i>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field  thumbnails-container">
+                            <div>
+                                <div style="float: left; min-width: 100px; margin-top: 5px;">
+                                    <div class="border-gray addImage" ng-click="addImage()">
+                                        <i class="ion-image"></i>
+                                        <div><span ng-bind='"add_image" | translate'></span></div>
+                                    </div>
+                                </div>
+                                <div ng-repeat="image in newSightingImages track by $index" style="float: left; min-width: 100px;">
+                                    <div class="preview-image" ng-style="{'background-image':'url('+urlForImage(image)+')'}">
+                                        <div class="button button-icon ion-close-circled" ng-click="deleteImage($index)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item item-input border-opacity-field " style="background-color:transparent;color:white !important ;">
+                            <textarea class="login-text longText" type="text" ng-placeholder='"notes" | translate' style="color:white !important ;" ng-model="newSighting.note"></textarea>
+                        </div>
+                        <div class="button border-opacity buttonWhite" style="margin:0;padding: 5px 0;font-size:20px;font-weight:bold;width:100%;color: Black !important;" ng-click="finishSighting()" ng-bind='"save" | translate'></div>
+                    </div>
+                </ion-scroll>
+            </div>
+            <div ng-if="selectedSighting" ng-show="rightCol(3)" class="animate-show">
+                <ion-scroll direction="y" class="scrollVertical animalDetailsContainer" style="left: 0 !important; width: 100%;">
+                    <div class="animalHeader">
+                        <div ng-bind="selectedSighting.Animal" class="sightingName"></div>
+                        <div class="sightingEditDelete">
+                            <img class="editButton-fieldDetails" src="images/field/ico_edit_field_white@2x.png" ng-if="isAdmin(currUser, selectedField) || isManager(currUser, selectedField)" ng-click="editSighting(4)">
+                            <i class="icon closeIcon ion-close" ng-click="changeRightCol(1)"></i>
+                        </div>
+                        <!--<img src="images/field/ico_edit_field_white@2x.png" style="margin-right:25px;float:right;" ng-click="editSighting(selectedSighting)"/>-->
+                        <!--<i class="icon trashIcon ion-trash-b" ng-click="deleteSighting(selectedSighting)"></i>-->
+                    </div>
+                    <div class="animalWhen">
+                        <span ng-bind="date(selectedSighting.Date)"></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="getTime(time(selectedSighting.Date))"></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind='"by" | translate'></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="selectedSighting.Hunter.UserName"></span>
+                    </div>
+                    <div class="row animalDetails">
+                        <div class="col col-33 col-center colBold">
+                            <div ng-bind="selectedSighting.Type"></div>
+                            <div ng-bind="selectedSighting.Age"></div>
+                            <div ng-bind="selectedSighting.State"></div>
+                        </div>
+                        <div class="col col-center">
+                            <div ng-if="selectedSighting">
+                                <i ng-if="isSunTimeSight(selectedSighting)" class="icon weatherIcon wi" ng-class="selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].DayIcon"></i>
+                                <i ng-if="!isSunTimeSight(selectedSighting)" class="icon weatherIcon wi" ng-class="selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].NightIcon"></i>
+                                <span ng-bind="getTemperature(selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].tempC)"></span>
+                            </div>
+                            <div>
+                                <i class="icon weatherIcon wi wi-wind" ng-class="selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].WindIcon"></i>
+                                <span ng-bind="selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].winddir16Point"></span>
+                                <span ng-bind="getDistance(selectedSighting.Weather.hourly[getHourly(selectedSighting.Date)].windspeedKmph)"></span>
+                                <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                                <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                            </div>
+                            <div>
+                                <i class="icon weatherIcon wi" ng-class="selectedSighting.Weather.MoonIcon"></i>
+                                <span ng-bind="selectedSighting.Weather.AstronomyObject.Moon.moonphase"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animalNote">
+                        <span ng-bind="selectedSighting.Note"></span>
+                    </div>
+                    <div class="animalPhotos">
+                        <div ng-repeat="image in selectedSighting.Images">
+                            <img class="sightInfoImage" ng-if="isLocaL(image.SRC)" ng-src={{urlForImage(image.SRC)}}>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+
+            <div ng-show="rightCol(4)">
+                <ion-scroll direction="y" class="scrollVertical animalDetailsContainer" style="left: 0 !important; width: 100%;">
+                    <div class="animate-show">
+                        <div class="accordeonHeader" style="padding-right:0px;height:30px;">
+                            <span ng-bind='"edit_sighting" | translate'></span>
+                            <img class="deleteSighting" src="images/field/ico_del_field_white@2x.png" ng-click="deleteSighting()" />
+                        </div>
+
+                        
+
+                        <div class="list list-inset no-margin form-rounded " ng-class="{'shake':sightingInvalid}" style="background-color: transparent;">
+                            <div class="item item-input border-opacity-field dropdownTransparent">
+                                <input ng-model="currentSighting.Animal" class="login-text" type="text" ng-placeholder='"animal" | translate' id="input1"><!--disabled-->
+                                <div class="dropdown" ng-show="currFieldAnimals.length>0">
+                                    <!--show if there are animals on current field-->
+                                    <div ng-click="toggleSightDetails(1);$event.stopPropagation();" style="width: 30px; height: 30px; padding: 5px;">
+                                        <i class="ion-chevron-down"></i>
+                                    </div>
+                                    <ul class="dropdown-menu pull-right" id="editMenu1">
+                                        <li ng-repeat="animal in currFieldAnimals"><a href="#" ng-click="selectEditAmimal(animal.name);$event.stopPropagation();" ng-bind="animal.name" style="text-decoration: none;"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="item item-input border-opacity-field dropdownTransparent">
+                                <input ng-model="currentSighting.Type" class="login-text" type="text" ng-placeholder='"type" | translate' id="input2"><!--disabled-->
+                                <div class="dropdown" ng-show="currTypes.length>0">
+                                    <div ng-click="toggleSightDetails(2);$event.stopPropagation();" style="width: 30px; height: 30px; padding: 5px;">
+                                        <i class="ion-chevron-down"></i>
+                                    </div>
+                                    <ul class="dropdown-menu pull-right" id="editMenu2">
+                                        <li ng-repeat="type in currTypes"><a href="#" ng-click="selectEditType(type);$event.stopPropagation();" ng-bind="type" style="text-decoration: none;"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="item item-input border-opacity-field dropdownTransparent" ng-click="toggleSightDetails(3)">
+                                <input ng-model="currentSighting.Age" class="login-text" style="background-color: transparent;" type="text" ng-placeholder='"age" | translate' id="input3" readonly>
+                                <div class="dropdown">
+                                    <div style="width: 30px; height: 30px; padding: 5px;">
+                                        <i class="ion-chevron-down"></i>
+                                    </div>
+                                    <ul class="dropdown-menu pull-right" id="editMenu3">
+                                        <li><a ng-click="selectEditAge('0-1');$event.stopPropagation();">0-1</a></li>
+                                        <li><a ng-click="selectEditAge('1-2');$event.stopPropagation();">1-2</a></li>
+                                        <li><a ng-click="selectEditAge('3-7');$event.stopPropagation();">3-7</a></li>
+                                        <li><a ng-click="selectEditAge('8-15');$event.stopPropagation();">8-15</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="item item-input border-opacity-field dropdownTransparent" ng-click="toggleSightDetails(4)">
+                                <input ng-model="currentSighting.State" class="login-text" style="background-color: transparent;" type="text" ng-placeholder='"state" | translate' id="input4" readonly>
+                                <div class="dropdown">
+                                    <div style="width: 30px; height: 30px; padding: 5px;">
+                                        <i class="ion-chevron-down"></i>
+                                    </div>
+                                    <ul class="dropdown-menu pull-right" id="editMenu4">
+                                        <li><a ng-click="selectEditState('Single');$event.stopPropagation();">Single</a></li>
+                                        <li><a ng-click="selectEditState('Group');$event.stopPropagation();">Group</a></li>
+                                        <li><a ng-click="selectEditState('Tableau');$event.stopPropagation();">Tableau</a></li>
+                                        <!--<li><a href="#" ng-click="selectState('Else')">Else</a></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="item item-input border-opacity-field " id="datepicker" style="background-color: transparent;" ng-click="selectDate()">
+                                <label class="sightDate login-text">
+                                    <span ng-bind="date(currentSighting.Date)"></span>
+                                    <span>&nbsp;</span>
+                                    <span ng-bind="getTime(time(currentSighting.Date))"></span>
+                                </label>
+                            </div>
+                            <div class="item item-input border-opacity-field  dropdownTransparent">
+                                <div class="weather-hor">
+                                    <i ng-if="isSunTimeSight(currentSighting)" class="icon weatherIcon wi" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].DayIcon"></i>
+                                    <i ng-if="!isSunTimeSight(currentSighting)" class="icon weatherIcon wi" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].NightIcon"></i>
+                                    <span ng-bind="getTemperature(currentSighting.Weather.hourly[getHourly(currentSighting.Date)].tempC)"></span>
+                                </div>
+                                <div class="weather-hor">
+                                    <i class="icon weatherIcon wi wi-wind" ng-class="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].WindIcon"></i>
+                                    <span ng-bind="currentSighting.Weather.hourly[getHourly(currentSighting.Date)].winddir16Point"></span>
+                                    <span ng-bind="getDistance(currentSighting.Weather.hourly[getHourly(currentSighting.Date)].windspeedKmph)"></span>
+                                    <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                                    <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                                </div>
+                                <div class="weather-hor">
+                                    <i class="icon weatherIcon wi" ng-class="currentSighting.Weather.MoonIcon"></i>
+                                    <!--<span ng-bind="currentSighting.Weather.AstronomyObject.Moon.moonphase"></span>-->
+                                </div>
+                            </div>
+                            <div class="item item-input border-opacity-field  thumbnails-container">
+                                <!--<div ng-repeat="image in currentSighting.Images">
+                                    <img class="sightInfoImage" ng-if="isLocaL(image.SRC)" ng-src="{{urlForImage(image.SRC)}}">
+                                </div>-->
+                                <div>
+                                    <div style="float: left; min-width: 100px; margin-top: 5px;">
+                                        <div class="border-gray addImage" ng-click="addImageEdit()">
+                                            <i class="ion-image"></i>
+                                            <div><span ng-bind='"add_image" | translate'></span></div>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="image in currentSighting.Images" style="float: left; min-width: 100px;">
+                                        <div class="preview-image" ng-style={'background-image':'url({{urlForImage(image.SRC)}})'}>
+                                            <div class="button button-icon ion-close-circled" ng-click="deleteImageEdit(image)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item item-input border-opacity-field " style="background-color: transparent;">
+                                <textarea style="color: white;" class="login-text longText" type="text" ng-placeholder='"notes" | translate' ng-model="currentSighting.Note"></textarea>
+                            </div>
+                            <div class="button border-opacity buttonWhite" style="margin: 0; padding: 5px 0; font-size: 20px; font-weight: bold; width: 100%; background-color: white !important; color: Black !important;" ng-click="saveSighting()" ng-bind='"save" | translate'></div>
+                        </div>
+                        <div class="triangle-arrow-left"></div>
+                    </div>
+                </ion-scroll>
+            </div>
+
+        </div>
+
+    </ion-content>
+    <div id="fieldContainer" class="hide-on-keyboard-open">
+
+    </div>
+</ion-view>

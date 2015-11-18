@@ -1,0 +1,284 @@
+﻿
+<link href="css/viewsStyles/dashboard.css" rel="stylesheet">
+<ion-view class="dashboardPane" style="background: url(images/dashboard.png) no-repeat center;-webkit-background-size: cover; -moz-background-size: cover; background-size: cover;">
+
+    <div class="upper-margin-dash">
+        <span class="welcome-message-dash">
+            <span ng-bind='"welcome_field_dash" | translate'></span>
+            <span ng-bind="', ' + currUser.UserName"></span>
+
+        </span>
+
+        <!--<div style="display:inline-block; float:right;">-->
+        <!--<div class="headerText" ng-bind='"choose_animals" | translate'></div>
+        <i class="ion-chevron-down button button-clear iconBig" ng-click="toggleMenu()"></i>-->
+        <span class="ion-gear-b iconBig iconGear" ng-click="settings()"></span>
+
+    </div>
+
+    <div class="row scrollRowPosition row-center fieldsList">
+        <div class="col-90 col-center" style="margin:auto;">
+            <div class="fieldsList">
+                <div class="fieldsSlick">
+
+                    <ion-scroll zooming="true" direction="x" style="width: 100%; height: 300px;overflow:hidden;" on-scroll="scrollTrigger()" delegate-handle="fieldsListScroll" min-zoom="1" max-zoom="1">
+                        <div class="fieldsListContainer" style="width:1800px;height:300px;display:flex;webkit-:flex;">
+                            <div ng-repeat="field in fields track by $index" class="fieldWrap" style="padding-bottom:50px;">
+                                <div class="field" ng-click="showField(field)">
+
+                                    <div ng-if="!field.weather || field.weather.length==0 || getWeatherIndex(field)==-1">
+
+                                        <div class="list weatherList">
+                                            <div class="fieldBrightFilter"></div>
+
+                                            <div class="backImage-dash" style="background-image:url({{getDatadDir()+field.Image.SRC}})"></div>
+
+
+                                            <a class="item-icon-left item-icon-right weatherItem">
+                                                <span>&nbsp;</span>
+                                            </a>
+                                            <a class="item-icon-left weatherItem">
+                                                <span>&nbsp;</span>
+                                            </a>
+                                            <a class="item-icon-left weatherItem">
+                                                <span>&nbsp;</span>
+                                            </a>
+
+                                            <div class="dashFieldSubTitle" ng-if="field.Sightings != undefined">
+                                                <span ng-show="field.Sightings.length>0" ng-bind="field.Sightings.length"></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind='"sightings" | translate'></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind='"at" | translate'></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind="date(field.Sightings[field.Sightings.length-1].Date)"></span>
+                                            </div>
+                                            <div class="dashFieldSubTitle" ng-if="field.Sightings == undefined">
+                                                <span>&nbsp;</span>
+                                            </div>
+                                            <div class="dashFieldTitle">
+                                                <span ng-bind="field.Name"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div ng-if="field.weather && field.weather.length!=0 && getWeatherIndex(field)!=-1">
+                                        <div class="list weatherList">
+                                            <div ng-if="!field.isWeatherExpanded" class="fieldBrightFilter"></div>
+                                            <div ng-if="field.isWeatherExpanded" class="fieldExpandedBrightFilter"></div>
+                                            <div class="backImage-dash" style="background-image:url({{getDatadDir()+field.Image.SRC}})"></div>
+
+                                            <a class="item-icon-left item-icon-right weatherItem" ng-click="expandWeather(field); $event.stopPropagation();">
+                                                <i ng-if="isSunTime(field)" class="icon weatherIcon wi" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].DayIcon"></i>
+                                                <i ng-if="!isSunTime(field)" class="icon weatherIcon wi" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].NightIcon"></i>
+                                                <span ng-bind="getTemperature(field.weather[getWeatherIndex(field)].hourly[getHourly()].tempC)"></span>
+                                                <i class="icon arrowDownIcon ion-close" ng-if="field.isWeatherExpanded"></i>
+                                                <i class="icon arrowDownIcon ion-chevron-down" ng-if="!field.isWeatherExpanded"></i>
+                                            </a>
+                                            <a class="item-icon-left weatherItem" ng-click="expandWeather(field); $event.stopPropagation();">
+                                                <i class="icon weatherIcon wi wi-wind" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].WindIcon"></i>
+                                                <span ng-bind="field.weather[getWeatherIndex(field)].hourly[getHourly()].winddir16Point"></span>
+                                                <span ng-bind="getDistance(field.weather[getWeatherIndex(field)].hourly[getHourly()].windspeedKmph)"></span>
+                                                <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                                                <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                                            </a>
+                                            <a class="item-icon-left weatherItem">
+                                                <i class="icon weatherIcon wi" ng-class="field.weather[getWeatherIndex(field)].MoonIcon"></i>
+                                                <span ng-bind="field.weather[getWeatherIndex(field)].AstronomyObject.Moon.moonphase"></span>
+                                            </a>
+                                            <div ng-show="field.isWeatherExpanded" class="animate-show">
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-strong-wind"></i>
+                                                    <span ng-bind="getTemperature(field.weather[getWeatherIndex(field)].hourly[getHourly()].WindChillC)"></span>
+                                                </a>
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-sunrise"></i>
+                                                    <span ng-bind="getTime(getSunriseTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                </a>
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-sunset"></i>
+                                                    <span ng-bind="getTime(getSunsetTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                </a>
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-horizon"></i>
+                                                    <span ng-bind="getTime(getTwi12StartTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                    <span>&nbsp;/&nbsp;</span>
+                                                    <span ng-bind="getTime(getTwi12EndTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                </a>
+
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-moonrise"></i>
+                                                    <span ng-bind="getTime(getMoonriseTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                </a>
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon wi wi-moonset"></i>
+                                                    <span ng-bind="getTime(getMoonsetTime(field.weather[getWeatherIndex(field)].AstronomyObject))"></span>
+                                                </a>
+
+                                                <a class="item-icon-left weatherItem">
+                                                    <i class="icon weatherIcon ion-ios-eye"></i>
+                                                    <span ng-bind="getDistance(field.weather[getWeatherIndex(field)].hourly[getHourly()].visibility)"></span>
+                                                    <span ng-if="distance == 'km'" ng-bind='"km" | translate'></span>
+                                                    <span ng-if="distance != 'km'" ng-bind='"miles" | translate'></span>
+                                                </a>
+
+                                            </div>
+                                            <div class="dashFieldSubTitle" ng-if="field.Sightings != undefined" ng-show="!field.hideTitle">
+                                                <span ng-show="field.Sightings.length>0" ng-bind="field.Sightings.length"></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind='"sightings" | translate'></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind='"at" | translate'></span>
+                                                <span>&nbsp;</span>
+                                                <span ng-show="field.Sightings.length>0" ng-bind="date(field.Sightings[field.Sightings.length-1].Date)"></span>
+                                            </div>
+                                            <div class="dashFieldSubTitle" ng-if="field.Sightings == undefined" ng-show="!field.hideTitle">
+                                                <span>&nbsp;</span>
+                                            </div>
+                                            <div class="dashFieldTitle" ng-show="!field.hideTitle">
+                                                <span ng-bind="field.Name"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div ng-show="field.isWeatherExpanded" class="animate-show">
+                <div class="list weatherList">
+                <a class="item-icon-left item-icon-right weatherItem" ng-click="expandWeather(field); $event.stopPropagation();">
+                    <i ng-if="isSunTime(field)" class="icon weatherIcon wi" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].DayIcon"></i>
+                    <i ng-if="!isSunTime(field)" class="icon weatherIcon wi" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].NightIcon"></i>
+                        <span ng-bind="getTemperature(field.weather[getWeatherIndex(field)].hourly[getHourly()].tempC)"></span>
+                        <i class="icon dashArrowDownIcon ion-close"></i>
+                    </a>
+                <a class="item-icon-left weatherItem" ng-click="expandWeather(field); $event.stopPropagation();">
+                        <i class="icon weatherIcon wi wi-wind" ng-class="field.weather[getWeatherIndex(field)].hourly[getHourly()].WindIcon"></i>
+                        <span ng-bind="field.weather[getWeatherIndex(field)].hourly[getHourly()].winddir16Point"></span>
+                        <span ng-bind="getDistance(field.weather[getWeatherIndex(field)].hourly[getHourly()].windspeedKmph)"></span>
+                        <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                        <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon ion-waterdrop"></i>
+                        <span ng-bind="field.weather[getWeatherIndex(field)].hourly[getHourly()].humidity + '%'"></span>
+                    </a>
+
+                </div>
+            </div>-->
+                                </div>
+                            </div>
+                            <div class="fieldWrap addNewField">
+                                <!--ng-if="fields.length==0"-->
+                                <div class="field">
+                                    <div class="addFieldItem row row-center" ng-click="showAddDialog()">
+                                        <div class="addFieldText text-center col col-center">
+                                            <i class="icon ion-plus" style="font-size: 40px;"></i>
+                                            <br />
+                                            <br />
+                                            <span ng-bind='"add_field_dash" | translate'></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row weatherBlockRowPosition" ng-click="saveClick(fields)">
+        <div class="col" style="max-width:250px;margin:auto;padding:0;margin-top:10px;">
+            <div class="weatherBlock">
+                <div class="list weatherList" style="display:inline;">
+                    <div style="display:inline-block;">
+                        <a class="item-icon-left weatherItem">
+                            <i class="icon weatherIcon ion-ios-sunny-outline"></i>
+                            27 °C
+                        </a>
+                        <a class="item-icon-left weatherItem">
+                            <i class="icon weatherIcon ion-navigate"></i>
+                            ESE at 6.8 km/h
+                        </a>
+                        <a class="item-icon-left weatherItem">
+                            <i class="icon weatherIcon ion-waterdrop"></i>
+                            69%
+                        </a>
+                    </div>
+                    <i class="icon dashArrowDownIcon ion-chevron-down" style="color:white;float:right;margin:0 5px;"></i>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="weather-container-dash">
+        <div class="WeatherWindowContainer" ng-if="curWeather.array != undefined">
+
+            <img class="WeatherWindow" ng-src="images/windows/{{getWindowName(curWeather.array[0].hourly[getHourly()].weatherCode)}}.png" />
+        </div>
+
+        <div class="weatherBlock" ng-if="curWeather.array != undefined">
+            <div class="list weatherListBlock">
+                <a class="item-icon-left item-icon-right weatherItem" ng-click="expWeather()">
+                    <i ng-if="isSunny()" class="icon weatherIcon wi" ng-class="curWeather.array[0].hourly[getHourly()].DayIcon"></i>
+                    <i ng-if="!isSunny()" class="icon weatherIcon wi" ng-class="curWeather.array[0].hourly[getHourly()].NightIcon"></i>
+                    <span ng-bind="getTemperature(curWeather.array[0].hourly[getHourly()].tempC)"></span>
+                    <i class="icon dashArrowDownIcon ion-chevron-down" ng-class="curWeather.exp?'ion-chevron-down':'ion-chevron-up'"></i>
+                </a>
+                <a class="item-icon-left weatherItem" ng-click="expWeather()">
+                    <i class="icon weatherIcon wi wi-wind" ng-class="curWeather.array[0].hourly[getHourly()].WindIcon"></i>
+                    <span ng-bind="curWeather.array[0].hourly[getHourly()].winddir16Point"></span>
+                    <span ng-bind="getDistance(curWeather.array[0].hourly[getHourly()].windspeedKmph)"></span>
+                    <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+                    <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+                </a>
+                <a class="item-icon-left weatherItem">
+                    <i class="icon weatherIcon wi" ng-class="curWeather.array[0].MoonIcon"></i>
+                    <span ng-bind="curWeather.array[0].AstronomyObject.Moon.moonphase"></span>
+                </a>
+                <div ng-show="curWeather.exp" class="animate-show">
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-strong-wind"></i>
+                        <span ng-bind="getTemperature(curWeather.array[0].hourly[getHourly()].WindChillC)"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-sunrise"></i>
+                        <span ng-bind="getTime(getSunriseTime(curWeather.array[0].AstronomyObject))"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-sunset"></i>
+                        <span ng-bind="getTime(getSunsetTime(curWeather.array[0].AstronomyObject))"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-horizon"></i>
+                        <span ng-bind="getTime(getTwi12StartTime(curWeather.array[0].AstronomyObject))"></span>
+                        <span>&nbsp;/&nbsp;</span>
+                        <span ng-bind="getTime(getTwi12EndTime(curWeather.array[0].AstronomyObject))"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-moonrise"></i>
+                        <span ng-bind="getTime(getMoonriseTime(curWeather.array[0].AstronomyObject))"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon wi wi-moonset"></i>
+                        <span ng-bind="getTime(getMoonsetTime(curWeather.array[0].AstronomyObject))"></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon ion-ios-eye"></i>
+                        <span ng-bind="getDistance(curWeather.array[0].hourly[getHourly()].visibility)"></span>
+                        <span ng-if="distance == 'km'" ng-bind='"km" | translate'></span>
+                        <span ng-if="distance != 'km'" ng-bind='"miles" | translate'></span>
+                    </a>
+                    <a class="item-icon-left weatherItem">
+                        <i class="icon weatherIcon ion-clock"></i>
+                        <span ng-bind="getTime(curWeather.date, true)"></span>
+                        <span>&nbsp;</span>
+                        <span ng-bind="curWeather.date | date:'dd.MM.yy'"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-view>

@@ -1,0 +1,186 @@
+﻿<!--<link href="css/viewsStyles/map.css" rel="stylesheet">-->
+<div data-tap-disabled="true" id="map" class="mapContainer" ng-style="getStyle(showGalleryVar)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+<div class="slickContainer showGallery">
+    <div class="row">
+        <div class="col-50 mapPhotoCol" ng-click="takePhoto()">
+            <div class="mapPhotoIcon takePhotoIcon"></div>
+            <div class="mapPhotoText">TakePhoto</div>
+        </div>
+        <div class="col-50" style="text-align:center;" ng-click="choosePhoto()">
+            <div class="mapPhotoIcon choosePhotoIcon" style="width: 58px;"></div>
+            <div class="mapPhotoText">Choose from existing</div>
+        </div>
+    </div>
+</div>
+
+<ion-header-bar align-title="center" class="transparentBar mapHeader row row-center" ng-if="!creating">
+    <div class="backButtonContainer col col-20">
+        <button class="button button-icon button-clear ion-chevron-left mapHeaderButton" ui-sref="dashboard" ng-bind='"back" | translate'></button>
+    </div>
+    <div ng-show="!creating" class="mapHeaderTitle col col-center">
+        <div class="row row-center">
+            <div class="col col-center">
+                {{selectedField.Name}}
+            </div>
+        </div>
+        <div class="filterBtn row row-center" ng-click="filterMarkers()" ng-show="!creating">
+            <div class="col col-center" style="white-space: nowrap;">
+                <!--<span ng-bind='"show" | translate'></span>-->
+                <div class="filterBtnText" style="line-height: 25px;">
+                    {{filterStr}}
+                </div>
+                <div class="filterBtnImg">
+                    <img src="images/field/filter_icon/filter_dropdown_sign_white@2x.png" />
+                </div>
+
+            </div>
+            <!--<div class="col col-center" style="max-width:45%;">
+
+            </div>-->
+        </div>
+    </div>
+
+    <div class="mapHeaderButtonsContainer col col-20">
+        <img src="images/field/ico_text_mode_white@2x.png" ng-show="!creating" ui-sref="fieldDetails" style="margin-right: auto;" />
+        <img src="images/user_management/ico_admin_white@2x.png" class="" ng-click="popover.show($event)" ng-if="isAdmin(currUser, selectedField)" />
+        <img src="images/user_management/ico_manager_white@2x.png" class="" ng-click="popover.show($event)" ng-if="!isAdmin(currUser, selectedField) && isManager(currUser, selectedField)" />
+        <img src="images/field/ico_edit_field_white@2x.png" class="" ng-click="editField()" ng-if="isAdmin(currUser, selectedField)" />
+        <img src="images/field/export_icon/export_white@2x.png" class="" ng-click="exportData(selectedField.FieldId)" style="width:40px !important;" />
+    </div>
+</ion-header-bar>
+
+
+<div class="topButtons-createMap">
+    <form name="nameForm" class="fields-map card" ng-show="creating">
+        <input name="fieldName" class="fieldName" type="text" ng-maxlength="10" ng-placeholder='"name" | translate' ng-model="field.name" />
+    </form>
+    <span ng-show="nameForm.fieldName.$error.maxlength" class="nameLengthError" ng-bind='"field_name_length_error" | translate'></span>
+</div>
+
+<div class="bottomAdvice-map" ng-if="isPolygonButtonClicked">
+    Tap on map to place node or tap on first node to close boundary
+</div>
+
+<div class="leftSideBox" ng-if="creating">
+    <div class="topBox">
+        <img src="images/field/ico_green_checkmark@2x.png" ng-class="{'saveBtn': creating && allStepsFinished(), 'saveBtn-transparent': !creating || !allStepsFinished()}" ng-click="saveField()" /><!--addImage()-->
+        <img src="images/field/ico_red_cross@2x.png" ng-click="cancelFieldEditing()" />
+    </div>
+    <div class="bottomBox" ng-class="{'active':showGalleryVar}">
+        <img src="images/field/ico_add_photo@2x.png" ng-click="toggleGallery()" /><!--addImage()-->
+        <img src="images/field/ico_add_info@2x.png" ng-click="addNote()" />
+        <img src="images/field/ico_boundaries@2x.png" ng-click="createPolygon()" />
+    </div>
+</div>
+ 
+<!-- <div ng-if="creating" class="bottomButtons-map" ng-class="{'active':showGalleryVar}">
+    <img src="images/field/ico_add_cover@2x.png" ng-click="toggleGallery()" class="addPhotos" />
+    <img src="images/field/ico_add_info@2x.png" class="addNotes" ng-click="addNote()" />
+    <img src="images/field/ico_add_boundaries@2x.png" class="createPolygon" ng-click="createPolygon()" />
+</div> -->
+
+<div ng-if="!creating" class="rightBottomBtns-map">
+    <img src="images/field/ico_locate_me@2x.png" class="mapLocation" ng-click="locateMe()"/>
+    <img src="images/field/ico_field_info@2x.png" class="showNotes" ng-click="showInfo()"/>
+</div>
+<div class="noteContainer" ng-if="!creating && isShowInfoButtonClicked">
+    <textarea style="height: 20px" elastic ng-model="field.note" readonly></textarea>
+    <div class="triangle-arrow-right-info"></div>
+</div>
+
+<div ng-if="isPolygonButtonClicked && !isPolygonCreated" class="polygonButtons" ng-class="{'active':showGalleryVar}">
+    <img src="images/field/polygon/ico_finish@2x.png" ng-click="finishPolygonDrawing()" />
+    <img src="images/field/polygon/ico_delete_last_point@2x.png" ng-click="deleteLastPoint()" />
+    <img src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelPolygonDrawing()" />
+</div>
+
+
+
+<div class="fields-map" ng-if="creating">
+    <!--<input type="text" ng-placeholder='"name" | translate' ng-model="field.name">-->
+    <div class="note-map" ng-if="isAddNoteButtonClicked">
+        <textarea style="height: 20px" elastic ng-placeholder='"notes" | translate' ng-model="field.note"></textarea>
+        <div class="triangle-arrow-right-map"></div>
+    </div>
+</div>
+
+<!--<img src="images/field/ico_save@2x.png" ng-if="creating && allStepsFinished()" ng-click="saveField()" class="saveField-map " ng-bind='"save" | translate' />-->
+
+<div class="list weatherListFD weather-map" ng-if="!creating && selectedField.weather && selectedField.weather.length>0 && getWeatherIndex(selectedField)!=-1">
+
+    <a class="item-icon-left item-icon-right weatherItem" ng-click="expandWeather()">
+        <i ng-if="isSunTime(selectedField)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].DayIcon"></i>
+        <i ng-if="!isSunTime(selectedField)" class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].NightIcon"></i>
+        <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].tempC)"></span>
+        <i class="icon arrowDownIcon ion-close" ng-if="isExpanded"></i>
+        <i class="icon arrowDownIcon ion-chevron-down" ng-if="!isExpanded"></i>
+    </a>
+    <a class="item-icon-left weatherItem" ng-click="expandWeather()">
+        <i class="icon weatherIcon wi wi-wind" ng-class="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].WindIcon"></i>
+        <span ng-bind="selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].winddir16Point"></span>
+        <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].windspeedKmph)"></span>
+        <span ng-if="distance == 'km'" ng-bind='"km_h" | translate'></span>
+        <span ng-if="distance != 'km'" ng-bind='"mph" | translate'></span>
+    </a>
+    <a class="item-icon-left weatherItem">
+        <i class="icon weatherIcon wi" ng-class="selectedField.weather[getWeatherIndex(selectedField)].MoonIcon"></i>
+        <span ng-bind="selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject.Moon.moonphase"></span>
+    </a>
+    <div ng-show="isExpanded" class="animate-show">
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-strong-wind"></i>
+            <span ng-bind="getTemperature(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].WindChillC)"></span>
+        </a>
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-sunrise"></i>
+            <span ng-bind="getTime(getSunriseTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+        </a>
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-sunset"></i>
+            <span ng-bind="getTime(getSunsetTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+        </a>
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-horizon"></i>
+            <span ng-bind="getTime(getTwi12StartTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+            <span>&nbsp;/&nbsp;</span>
+            <span ng-bind="getTime(getTwi12EndTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+        </a>
+
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-moonrise"></i>
+            <span ng-bind="getTime(getMoonriseTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+        </a>
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon wi wi-moonset"></i>
+            <span ng-bind="getTime(getMoonsetTime(selectedField.weather[getWeatherIndex(selectedField)].AstronomyObject))"></span>
+        </a>
+
+        <a class="item-icon-left weatherItem">
+            <i class="icon weatherIcon ion-ios-eye"></i>
+            <span ng-bind="getDistance(selectedField.weather[getWeatherIndex(selectedField)].hourly[getHourly()].visibility)"></span>
+            <span ng-if="distance == 'km'" ng-bind='"km" | translate'></span>
+            <span ng-if="distance != 'km'" ng-bind='"miles" | translate'></span>
+        </a>
+    </div>
+</div>
+
+
+<div ng-show="showEditRemoveButtons && isPolygonCreated" class="polygonEditing-map">
+    <img src="images/field/polygon/ico_boundarie_edit@2x.png" ng-click="editPolygon()" />
+    <img src="images/field/polygon/ico_boundarie_delete@2x.png" ng-click="deletePolygon()" />
+
+    <div class="polygonEditConfirmationButtons">
+        <img ng-show="isEditPolygonClicked" src="images/field/polygon/ico_finish@2x.png" ng-click="saveEditedPolygon()" />
+        <img ng-show="isEditPolygonClicked" src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelEditingPolygon()" />
+    </div>
+
+    <div class="polygonRemoveConfirmationButtons">
+        <img ng-show="isDeletePolygonClicked" src="images/field/polygon/ico_finish@2x.png" ng-click="savePolygonDeletion()" />
+        <img ng-show="isDeletePolygonClicked" src="images/field/polygon/ico_cancel@2x.png" ng-click="cancelPolygonDeletion()" />
+    </div>
+</div>
+
+<div id="mapContainer" class="hide-on-keyboard-open" ng-show="!creating">
+
+</div>
+

@@ -1,0 +1,38 @@
+﻿<link href="css/viewsStyles/showPOIInfo.css" rel="stylesheet">
+
+
+<div ng-controller="showPOIInfoCtrl" class="showPoi-modal padding">
+    <div class="animate-show">
+        <img class="editButton-poi" src="images/field/ico_edit_field_white@2x.png" ng-click="editPOI()" />
+        
+        <ion-scroll direction="y" class="scrollVertical-showPoi animalDetailsContainer-showPoi">
+            <div class="1AnimalHeader">
+                <span ng-bind="currentPOI.Name"></span>
+                <!--<i class="icon closeIcon ion-close" ng-click="closeModal()"></i>
+                <i class="icon trashIcon ion-trash-b" ng-click="editPOI()"></i>-->
+
+            </div>
+            <div class="1animalWhen">
+                <!--<span ng-bind="date(currentPOI.Date)"></span>
+                <span>&nbsp;</span>
+                <span ng-bind="getTime(time(currentPOI.Date))"></span>
+                <span>&nbsp;</span>-->
+                <span ng-bind='"by" | translate'></span>
+                <span>&nbsp;</span>
+                <span ng-bind="currentPOI.Hunter.UserName"></span>
+            </div>
+
+            <div class="1animalNote">
+                <span ng-bind="currentPOI.Note"></span>
+            </div>
+            <div class="1animalPhotos">
+                <div ng-repeat="image in currentPOI.Images">
+                    <img class="sightInfoImage" ng-if="isLocaL(image.SRC)" ng-src="{{urlForImage(image.SRC)}}">
+                </div>
+            </div>
+        </ion-scroll>
+    </div>
+
+    <div class="triangle-arrow-left"></div>
+
+</div>
